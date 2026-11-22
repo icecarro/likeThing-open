@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>找到你擅长且喜欢的事情</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#6b655c;--line:#e8e0d4;--paper:#fbf8f2;--accent:#b8552f;--ok:#2f5d50}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:#efece6;color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+  .phone{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;display:flex;flex-direction:column}
+  header{padding:18px 22px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:5}
+  .bar{height:4px;background:#f0e9de;border-radius:99px;overflow:hidden;margin-top:10px}
+  .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+  .hint{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-top:6px}
+  main{flex:1;padding:26px 22px 120px}
+  .qno{font-size:12px;letter-spacing:.2em;color:var(--accent);margin-bottom:10px}
+  .stem{font-size:20px;font-weight:700;line-height:1.55;margin-bottom:6px}
+  .sub{font-size:13px;color:var(--sub);margin-bottom:20px}
+  .opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;
+       padding:14px 16px;margin-bottom:10px;font-size:15px;color:var(--ink);cursor:pointer;transition:.15s;font-family:inherit}
+  .opt:hover{border-color:#c9bda9}
+  .opt.sel{border-color:var(--accent);background:#fdf6f1;box-shadow:0 0 0 1px var(--accent) inset}
+  .opt .k{display:inline-block;width:22px;color:var(--accent);font-weight:700}
+  .likert{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .likert button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:14px 4px;font-size:13px;
+       color:var(--sub);cursor:pointer;font-family:inherit}
+  .likert button.sel{border-color:var(--accent);background:#fdf6f1;color:var(--accent);font-weight:700}
+  .rank .item{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer}
+  .rank .item .num{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sub)}
+  .rank .item.sel{border-color:var(--accent);background:#fdf6f1}
+  .rank .item.sel .num{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .multi .opt.sel .k{color:var(--ok)}
+  .ghead{font-size:12px;color:var(--sub);margin:16px 0 8px;letter-spacing:.08em}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip2{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:13px;color:var(--ink);cursor:pointer;font-family:inherit}
+  .chip2.sel{border-color:var(--accent);background:#fdf6f1;color:var(--accent)}
+  textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:15px;
+       font-family:inherit;resize:vertical;line-height:1.6}
+  .count{text-align:right;font-size:12px;color:var(--sub);margin-top:6px}
+  footer{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 22px;
+       display:flex;gap:10px;max-width:480px;margin:0 auto}
+  footer button{flex:1;border-radius:12px;padding:14px;font-size:16px;font-family:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink)}
+  footer button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+  footer button:disabled{opacity:.4;cursor:not-allowed}
+  .cover{padding:0}
+  .cover .k{font-size:11px;letter-spacing:.3em;color:#b06a45;margin-bottom:16px}
+  .cover h1{font-size:34px;line-height:1.3;margin-bottom:12px;letter-spacing:-.6px;font-weight:800}
+  .cover p{color:#7a6a5c;font-size:15px;margin-bottom:6px}
+  .cover .meta{font-size:12px;color:#9a8a7a;margin:18px 0 0}
+  .cover button{width:100%;margin-top:14px}
+  /* —— 新封面 —— */
+  .hero{position:relative;overflow:hidden;min-height:100vh;width:100%;
+        background:linear-gradient(165deg,#fffaf4 0%,#fbe9d8 52%,#f5d9c4 100%)}
+  .hero .inner{position:relative;margin:0 auto;padding:52px 22px 48px;
+        width:100%;max-width:430px;min-height:100vh;box-sizing:border-box;
+        display:flex;flex-direction:column;justify-content:center}
+  .hero .orb{max-width:none}
+  .hero .orb{position:absolute;border-radius:50%;pointer-events:none}
+  .hero .o1{width:190px;height:190px;background:radial-gradient(circle at 30% 30%,#f3c9a6,#eebd95);top:-70px;right:-60px;opacity:.55}
+  .hero .o2{width:130px;height:130px;background:radial-gradient(circle at 40% 40%,#e8b48f,#e0a37c);bottom:-45px;left:-45px;opacity:.35}
+  .hero .o3{width:60px;height:60px;background:#fff;opacity:.5;top:120px;right:28px}
+  .hero .k{position:relative;font-size:11px;letter-spacing:.28em;color:#a85f3c;font-weight:700}
+  .hero h1{position:relative;font-size:38px;line-height:1.26;letter-spacing:-1px;margin:16px 0 12px;font-weight:800}
+  .hero h1 em{font-style:normal;color:#b8552f;box-shadow:inset 0 -12px 0 rgba(240,190,150,.45)}
+  .hero .lead{position:relative;font-size:15px;color:#6f6053;line-height:1.7}
+  .feat{position:relative;display:block;margin:24px 0 18px;width:100%}
+  .feat .row{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.78);
+             border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:12px 14px;width:100%;
+             margin-bottom:10px;box-sizing:border-box;box-shadow:0 6px 18px rgba(180,120,80,.08)}
+  .feat .ic{width:36px;height:36px;border-radius:50%;background:#fff;display:flex;align-items:center;
+            justify-content:center;font-size:12px;font-weight:800;color:#b8552f;flex:none;
+            box-shadow:0 2px 6px rgba(180,120,80,.12);letter-spacing:.5px}
+  .feat b{display:block;font-size:15px;color:#2b2723}
+  .feat span{display:block;font-size:12px;color:#8a7868;margin-top:1px}
+  .hero .cta{position:relative;width:100%;border:none;border-radius:14px;padding:16px;
+             background:linear-gradient(135deg,#c05f36,#a94e2a);color:#fff;font-size:17px;font-weight:800;
+             font-family:inherit;letter-spacing:.5px;box-shadow:0 10px 24px rgba(169,78,42,.28);cursor:pointer}
+  .hero .cta small{display:block;font-size:11px;font-weight:400;opacity:.85;letter-spacing:0;margin-top:2px}
+  .hero .alt{position:relative;width:100%;background:none;border:none;color:#8a7868;font-size:13px;
+             text-decoration:underline;margin-top:14px;font-family:inherit;cursor:pointer}
+  .trustline{position:relative;font-size:11px;color:#9a8a7a;text-align:center;margin-top:16px;line-height:1.6}
+  .ghost{background:#fff;color:var(--sub);border:1px dashed var(--line)}
+  pre{background:#f7f4ee;border-radius:12px;padding:14px;font-size:11px;line-height:1.5;overflow:auto;max-height:300px;
+      white-space:pre-wrap;word-break:break-all;font-family:Consolas,monospace}
+  .done h2{font-size:24px;margin-bottom:8px}
+  .done p{color:var(--sub);font-size:14px;margin-bottom:14px}
+  .done .row{display:flex;gap:10px;margin:14px 0}
+  .done .row button{flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);background:#fff;font-family:inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="phone">
+  <header id="hdr" style="display:none">
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--sub)">
+      <span>擅长且喜欢</span><span id="pos">1 / 45</span>
+    </div>
+    <div class="bar"><i id="prog"></i></div>
+    <div class="hint"><span id="mod">才能</span><span id="tip">约 9 分钟</span></div>
+  </header>
+
+  <main id="main"></main>
+  <footer id="ftr" style="display:none">
+    <button id="prev">上一题</button>
+    <button id="next" class="primary">下一题</button>
+  </footer>
+</div>
+
+<script>
+const DATA = {"questions": [{"id": "P0", "module": "profile", "type": "tel", "stem": "你的手机号（用于交付报告，不会外传）", "required": true}, {"id": "P1", "module": "profile", "type": "choice", "tag": "age", "stem": "你今年多大？", "options": [{"key": "A", "text": "18–22 岁"}, {"key": "B", "text": "23–27 岁"}, {"key": "C", "text": "28–34 岁"}, {"key": "D", "text": "35–44 岁"}, {"key": "E", "text": "45 岁以上"}]}, {"id": "P2", "module": "profile", "type": "choice", "tag": "stage", "stem": "你现在的状态是：", "options": [{"key": "A", "text": "在校 / 刚毕业，在找工作"}, {"key": "B", "text": "工作 1–3 年"}, {"key": "C", "text": "工作 3–8 年"}, {"key": "D", "text": "工作 8 年以上"}, {"key": "E", "text": "自由职业 / 自己做事"}, {"key": "F", "text": "全职照顾家庭 / 待业中"}]}, {"id": "P3", "module": "profile", "type": "choice", "tag": "goal", "stem": "你现在最想解决的是：", "options": [{"key": "A", "text": "不知道能做什么"}, {"key": "B", "text": "想转行，但不敢动"}, {"key": "C", "text": "想涨薪 / 升职"}, {"key": "D", "text": "想搞副业 / 第二曲线"}, {"key": "E", "text": "想创业，做自己的事"}]}, {"id": "P6", "module": "profile", "type": "choice", "stem": "你填的生日是阳历还是阴历？（不知道就选阳历）", "options": [{"key": "A", "text": "阳历（公历）—— 身份证上那个，如 1984-11-16"}, {"key": "B", "text": "阴历（农历）—— 老家过生日那个，如 1984-10-24"}]}, {"id": "P4", "module": "profile", "type": "date", "stem": "你的出生年月日？（按上一题选的历法填）"}, {"id": "P5", "module": "profile", "type": "choice", "stem": "你出生在哪个时辰？（不知道就选最接近的）", "options": [{"key": "A", "text": "子时（23–1 点）"}, {"key": "B", "text": "丑时（1–3 点）"}, {"key": "C", "text": "寅时（3–5 点）"}, {"key": "D", "text": "卯时（5–7 点）"}, {"key": "E", "text": "辰时（7–9 点）"}, {"key": "F", "text": "巳时（9–11 点）"}, {"key": "G", "text": "午时（11–13 点）"}, {"key": "H", "text": "未时（13–15 点）"}, {"key": "I", "text": "申时（15–17 点）"}, {"key": "J", "text": "酉时（17–19 点）"}, {"key": "K", "text": "戌时（19–21 点）"}, {"key": "L", "text": "亥时（21–23 点）"}]}, {"id": "Q1", "module": "talent", "type": "choice", "stem": "周五下午，老板丢来一个没头没尾的需求，说下周一要。你的第一反应是：", "options": [{"key": "A", "text": "先问清楚：到底要解决什么问题、谁在用", "scores": {"thinking": 2}}, {"key": "B", "text": "先拆开：哪些能先做、哪些要等", "scores": {"executing": 2}}, {"key": "C", "text": "先想：有没有更聪明的做法", "scores": {"creating": 2}}, {"key": "D", "text": "先找人：看看别人有没有现成的", "scores": {"connecting": 2}}]}, {"id": "Q2", "module": "talent", "type": "choice", "stem": "项目复盘会上，大家各说各的。你通常会：", "options": [{"key": "A", "text": "把大家的发言整理成几条主线", "scores": {"thinking": 2}}, {"key": "B", "text": "直接说：下次就改这三件事", "scores": {"executing": 2}}, {"key": "C", "text": "提一个大家没想到的角度", "scores": {"creating": 2}}, {"key": "D", "text": "先肯定每个人的贡献", "scores": {"connecting": 2}}]}, {"id": "Q3", "module": "talent", "type": "choice", "stem": "要学一个完全陌生的东西，你会：", "options": [{"key": "A", "text": "找一门课，从第一章系统学起", "scores": {"stabilizing": 2}}, {"key": "B", "text": "先动手做个小 demo，边做边查", "scores": {"exploring": 2}}, {"key": "C", "text": "找行业里的人聊，问他们怎么理解", "scores": {"connecting": 2}}, {"key": "D", "text": "先把概念和框架画出来", "scores": {"thinking": 2}}]}, {"id": "Q4", "module": "talent", "type": "choice", "stem": "一群人要在七天里搞定一件从没做过的事，你最可能：", "options": [{"key": "A", "text": "站出来分工、定节点", "scores": {"executing": 2}}, {"key": "B", "text": "提出一个完全不同的方案", "scores": {"creating": 2}}, {"key": "C", "text": "先去试做最小的一块", "scores": {"exploring": 2}}, {"key": "D", "text": "把风险列清楚，先定底线", "scores": {"stabilizing": 2}}]}, {"id": "Q5", "module": "talent", "type": "choice", "stem": "一件做了很久的事，突然看不到进展。你会：", "options": [{"key": "A", "text": "换个方法再试", "scores": {"creating": 2}}, {"key": "B", "text": "拆成更小的步骤，每天推一点", "scores": {"executing": 2}}, {"key": "C", "text": "接受它需要时间，继续熬", "scores": {"stabilizing": 2}}, {"key": "D", "text": "先去试试别的方向", "scores": {"exploring": 2}}]}, {"id": "Q6", "module": "talent", "type": "choice", "stem": "别人形容你，最常说的一句是：", "options": [{"key": "A", "text": "交给你我放心", "scores": {"stabilizing": 2}}, {"key": "B", "text": "你好奇心真强", "scores": {"exploring": 2}}, {"key": "C", "text": "跟你聊天很舒服", "scores": {"connecting": 2}}, {"key": "D", "text": "你想得真细", "scores": {"thinking": 2}}]}, {"id": "Q7", "module": "talent", "type": "likert", "target": "thinking", "stem": "遇到复杂问题，你会先把它的结构拆出来再动手"}, {"id": "Q8", "module": "talent", "type": "likert", "target": "thinking", "stem": "别人说完一段话，你能听出他没说出口的那层意思"}, {"id": "Q9", "module": "talent", "type": "likert", "target": "creating", "stem": "你经常想到别人没想到的做法"}, {"id": "Q10", "module": "talent", "type": "likert", "target": "creating", "stem": "你对“好不好看、顺不顺”很敏感，会忍不住去调"}, {"id": "Q11", "module": "talent", "type": "likert", "target": "connecting", "stem": "别人情绪不对，你很快能察觉"}, {"id": "Q12", "module": "talent", "type": "likert", "target": "connecting", "stem": "你能让原本不同意的人，愿意再听你说一次"}, {"id": "Q13", "module": "talent", "type": "likert", "target": "executing", "stem": "一件事交到你手上，你会盯到它真正结束"}, {"id": "Q14", "module": "talent", "type": "likert", "target": "executing", "stem": "你会主动把混乱的流程整理成清单或模板"}, {"id": "Q15", "module": "talent", "type": "likert", "target": "exploring", "stem": "看到新工具、新领域，你会忍不住上手试"}, {"id": "Q16", "module": "talent", "type": "likert", "target": "exploring", "stem": "你能把 A 领域学到的东西用到 B 领域"}, {"id": "Q17", "module": "talent", "type": "likert", "target": "stabilizing", "stem": "你能长时间做同一件重复的事而不烦躁"}, {"id": "Q18", "module": "talent", "type": "likert", "target": "stabilizing", "stem": "你说要做的事，基本都会做到"}, {"id": "Q19", "module": "value", "type": "choice", "stem": "两份 offer 薪资一样，你会选：", "options": [{"key": "A", "text": "成长快，但会很累", "scores": {"growth": 1}}, {"key": "B", "text": "时间自由，自己安排", "scores": {"freedom": 1}}, {"key": "C", "text": "团队氛围好，能帮到人", "scores": {"relation": 1}}, {"key": "D", "text": "稳定，不会突然裁员", "scores": {"security": 1}}]}, {"id": "Q20", "module": "value", "type": "choice", "stem": "如果只能保住一样，你保：", "options": [{"key": "A", "text": "持续变强的能力", "scores": {"growth": 1}}, {"key": "B", "text": "自己说了算的空间", "scores": {"freedom": 1}}, {"key": "C", "text": "身边这群人", "scores": {"relation": 1}}, {"key": "D", "text": "一份确定的收入", "scores": {"security": 1}}]}, {"id": "Q21", "module": "value", "type": "choice", "stem": "你最不能忍的工作是：", "options": [{"key": "A", "text": "学不到东西", "scores": {"growth": 1}}, {"key": "B", "text": "事事被管", "scores": {"freedom": 1}}, {"key": "C", "text": "勾心斗角，没人情味", "scores": {"relation": 1}}, {"key": "D", "text": "随时可能没饭吃", "scores": {"security": 1}}]}, {"id": "Q22", "module": "value", "type": "choice", "stem": "十年后，你希望别人怎么评价你：", "options": [{"key": "A", "text": "他一直在变强", "scores": {"growth": 1}}, {"key": "B", "text": "他活得很自由", "scores": {"freedom": 1}}, {"key": "C", "text": "他帮过很多人", "scores": {"relation": 1}}, {"key": "D", "text": "他把日子过得稳稳的", "scores": {"security": 1}}]}, {"id": "Q23", "module": "value", "type": "ranking", "stem": "把下面四样排序，第一是你最看重的：", "items": [{"key": "1", "text": "成长", "group": "growth"}, {"key": "2", "text": "自由", "group": "freedom"}, {"key": "3", "text": "关系", "group": "relation"}, {"key": "4", "text": "稳定", "group": "security"}]}, {"id": "Q24", "module": "value", "type": "ranking", "stem": "四种成就感，排序：", "items": [{"key": "1", "text": "做成一件很难的事", "group": "growth"}, {"key": "2", "text": "自己掌控节奏", "group": "freedom"}, {"key": "3", "text": "被人需要", "group": "relation"}, {"key": "4", "text": "一直不出错", "group": "security"}]}, {"id": "Q25", "module": "value", "type": "ranking", "stem": "四种代价，你最不愿付的是，排序：", "items": [{"key": "1", "text": "学不到东西", "group": "growth"}, {"key": "2", "text": "被人管死", "group": "freedom"}, {"key": "3", "text": "孤军奋战", "group": "relation"}, {"key": "4", "text": "收入不稳定", "group": "security"}]}, {"id": "Q26", "module": "value", "type": "ranking", "stem": "四种理想状态，排序：", "items": [{"key": "1", "text": "一直在进步", "group": "growth"}, {"key": "2", "text": "想干就干", "group": "freedom"}, {"key": "3", "text": "身边有人", "group": "relation"}, {"key": "4", "text": "心里有底", "group": "security"}]}, {"id": "Q27", "module": "value", "type": "multi", "max_pick": 3, "stem": "选出最像你的三个：", "options": [{"key": "1", "text": "成长", "group": "growth"}, {"key": "2", "text": "成就", "group": "growth"}, {"key": "3", "text": "挑战", "group": "growth"}, {"key": "4", "text": "创造", "group": "growth"}, {"key": "5", "text": "学习", "group": "growth"}, {"key": "6", "text": "突破", "group": "growth"}, {"key": "7", "text": "卓越", "group": "growth"}, {"key": "8", "text": "探索", "group": "growth"}, {"key": "9", "text": "进步", "group": "growth"}, {"key": "10", "text": "改变", "group": "growth"}]}, {"id": "Q28", "module": "value", "type": "multi", "max_pick": 3, "stem": "选出最像你的三个：", "options": [{"key": "1", "text": "自由", "group": "freedom"}, {"key": "2", "text": "自主", "group": "freedom"}, {"key": "3", "text": "掌控", "group": "freedom"}, {"key": "4", "text": "独立", "group": "freedom"}, {"key": "5", "text": "灵活", "group": "freedom"}, {"key": "6", "text": "从容", "group": "freedom"}, {"key": "7", "text": "真实", "group": "freedom"}, {"key": "8", "text": "边界", "group": "freedom"}, {"key": "9", "text": "选择权", "group": "freedom"}, {"key": "10", "text": "松弛", "group": "freedom"}]}, {"id": "Q29", "module": "value", "type": "multi", "max_pick": 3, "stem": "选出最像你的三个：", "options": [{"key": "1", "text": "贡献", "group": "relation"}, {"key": "2", "text": "助人", "group": "relation"}, {"key": "3", "text": "连接", "group": "relation"}, {"key": "4", "text": "影响", "group": "relation"}, {"key": "5", "text": "被需要", "group": "relation"}, {"key": "6", "text": "共情", "group": "relation"}, {"key": "7", "text": "团队", "group": "relation"}, {"key": "8", "text": "信任", "group": "relation"}, {"key": "9", "text": "传承", "group": "relation"}, {"key": "10", "text": "温暖", "group": "relation"}]}, {"id": "Q30", "module": "value", "type": "multi", "max_pick": 3, "stem": "选出最像你的三个：", "options": [{"key": "1", "text": "稳定", "group": "security"}, {"key": "2", "text": "安全", "group": "security"}, {"key": "3", "text": "秩序", "group": "security"}, {"key": "4", "text": "可靠", "group": "security"}, {"key": "5", "text": "长期", "group": "security"}, {"key": "6", "text": "确定", "group": "security"}, {"key": "7", "text": "健康", "group": "security"}, {"key": "8", "text": "平衡", "group": "security"}, {"key": "9", "text": "积累", "group": "security"}, {"key": "10", "text": "守约", "group": "security"}]}, {"id": "Q31", "module": "passion", "type": "multi", "max_pick": 20, "dynamic": "all_fields", "grouped": true, "stem": "从 100 个行业里，先随便圈出你「有点兴趣」的（最多 20 个，不用想太多）", "options": []}, {"id": "Q32", "module": "passion", "type": "multi", "max_pick": 10, "dynamic": "picked20", "stem": "现在收一收：这 20 个里，真正愿意花时间去了解的，留下 10 个", "options": []}, {"id": "Q33", "module": "passion", "type": "multi", "max_pick": 5, "dynamic": "picked10", "stem": "再收一次：这 10 个里，你最喜欢的是哪 5 个？", "options": []}, {"id": "Q34", "module": "passion", "type": "multi", "dynamic": "picked5", "stem": "如果只能选两个，深耕五年，你会选哪两个？", "options": [], "max_pick": 2}, {"id": "Q35", "module": "passion", "type": "multi", "max_pick": 3, "dynamic": "subs", "stem": "第一个行业里面，你最想碰哪几块？（最多 3 个）", "options": []}, {"id": "Q36", "module": "passion", "type": "choice", "stem": "你对这个行业了解到什么程度？", "options": [{"key": "A", "text": "只是觉得有意思，没深入了解"}, {"key": "B", "text": "看过一些内容，知道大概"}, {"key": "C", "text": "动手做过一些，有点经验"}, {"key": "D", "text": "已经很熟，甚至靠它赚过钱"}]}, {"id": "Q37", "module": "passion", "type": "likert", "target": "intensity", "stem": "你愿意为这个行业花钱（买书、买课、买设备、去现场）"}, {"id": "Q38", "module": "passion", "type": "likert", "target": "intensity", "stem": "做这件事的时候，你会忘记时间"}, {"id": "Q39", "module": "passion", "type": "multi", "max_pick": 3, "dynamic": "subs2", "options": [], "stem": "第二个行业里面，你最想碰哪几块？（最多 3 个）"}, {"id": "X1", "module": "personality", "type": "likert", "stem": "在陌生人多的场合，我很快就能聊起来"}, {"id": "X2", "module": "personality", "type": "likert", "stem": "独处一天，我才能恢复能量"}, {"id": "X3", "module": "personality", "type": "likert", "stem": "我习惯先说出口，再慢慢想清楚"}, {"id": "X4", "module": "personality", "type": "likert", "stem": "人多的场合待久了，我会明显变累"}, {"id": "X5", "module": "personality", "type": "likert", "stem": "我喜欢主动认识新朋友"}, {"id": "X6", "module": "personality", "type": "likert", "stem": "比起一群人热闹，我更喜欢一对一深聊"}, {"id": "X7", "module": "personality", "type": "likert", "stem": "我更相信亲眼看到、亲手做过的事实"}, {"id": "X8", "module": "personality", "type": "likert", "stem": "我常想一件事背后还有哪些可能性"}, {"id": "X9", "module": "personality", "type": "likert", "stem": "我喜欢具体、可执行的步骤"}, {"id": "X10", "module": "personality", "type": "likert", "stem": "我容易从一个想法跳到另一个想法"}, {"id": "X11", "module": "personality", "type": "likert", "stem": "我记细节比记概念更准"}, {"id": "X12", "module": "personality", "type": "likert", "stem": "我喜欢讨论趋势和未来的可能性"}, {"id": "X13", "module": "personality", "type": "likert", "stem": "做决定时，我先看逻辑和利弊"}, {"id": "X14", "module": "personality", "type": "likert", "stem": "我很容易被别人的情绪影响"}, {"id": "X15", "module": "personality", "type": "likert", "stem": "朋友诉苦时，我更想给建议而不是安慰"}, {"id": "X16", "module": "personality", "type": "likert", "stem": "团队气氛和谐，对我来说很重要"}, {"id": "X17", "module": "personality", "type": "likert", "stem": "我能直接指出问题，哪怕场面尴尬"}, {"id": "X18", "module": "personality", "type": "likert", "stem": "我常常先照顾别人的感受"}, {"id": "X19", "module": "personality", "type": "likert", "stem": "我喜欢提前把计划定好"}, {"id": "X20", "module": "personality", "type": "likert", "stem": "我经常临时改计划"}, {"id": "X21", "module": "personality", "type": "likert", "stem": "事情迟迟定不下来，我会不安"}, {"id": "X22", "module": "personality", "type": "likert", "stem": "我喜欢保留多种可能，不急着定"}, {"id": "X23", "module": "personality", "type": "likert", "stem": "我按清单做事，打勾的时候很爽"}, {"id": "X24", "module": "personality", "type": "likert", "stem": "我更喜欢随性发挥，不喜欢被安排"}, {"id": "Q40", "module": "open", "type": "open", "max_chars": 200, "stem": "最近一次“做完不累、反而更有电”的事是什么？具体说说，越具体越好。"}, {"id": "Q41", "module": "open", "type": "open", "max_chars": 200, "stem": "别人最常找你帮什么忙？要具体的，不要写“什么都找我”。"}, {"id": "Q42", "module": "open", "type": "open", "max_chars": 200, "stem": "如果完全不用考虑钱，你想做什么？"}, {"id": "Q43", "module": "open", "type": "open", "max_chars": 500, "stem": "最后，还有什么想告诉我的？喜欢的事、最近的难处、特别想做的事，随便写。"}, {"id": "C1", "module": "check", "type": "choice", "stem": "这道题请选择第二个选项（用于检查是否认真作答）。", "options": [{"key": "A", "text": "选项一"}, {"key": "B", "text": "选项二"}, {"key": "C", "text": "选项三"}, {"key": "D", "text": "选项四"}]}, {"id": "C2", "module": "check", "type": "check_likert", "expect": 2, "stem": "我很少在做事之前先想清楚。"}, {"id": "C3", "module": "check", "type": "check_likert", "expect": 4, "stem": "一件事没真正结束，你放不下。"}], "groups": [{"id": "nature", "name": "自然 · 农牧 · 动植物", "domain": "nature"}, {"id": "science", "name": "科学 · 工程 · 制造", "domain": "tech"}, {"id": "health", "name": "医疗 · 健康", "domain": "health"}, {"id": "education", "name": "教育 · 成长", "domain": "education"}, {"id": "media", "name": "内容 · 传媒", "domain": "content"}, {"id": "design", "name": "设计 · 美学", "domain": "art"}, {"id": "music", "name": "音乐 · 表演", "domain": "art"}, {"id": "business", "name": "商业 · 金融", "domain": "business"}, {"id": "tech", "name": "技术 · 互联网", "domain": "tech"}, {"id": "life", "name": "生活 · 饮食", "domain": "life"}, {"id": "social", "name": "社会 · 公共服务", "domain": "society"}, {"id": "transport", "name": "交通 · 物流", "domain": "business"}, {"id": "travel", "name": "旅行 · 住宿", "domain": "life"}, {"id": "people", "name": "人际 · 家庭", "domain": "society"}], "fields": [{"id": "f_pet", "name": "动物 / 宠物", "group": "nature", "subs": ["宠物医疗", "宠物美容", "宠物食品用品", "宠物训练", "畜牧养殖"]}, {"id": "f_flower", "name": "花卉 / 园艺", "group": "nature", "subs": ["花卉种植", "花艺零售", "园林绿化", "盆栽多肉", "园艺资材"]}, {"id": "f_farm", "name": "种植 / 农业", "group": "nature", "subs": ["种苗育种", "大田种植", "设施农业（大棚）", "农资（种子化肥）", "农业社会化服务", "农产品收购"]}, {"id": "f_forest", "name": "林业 / 生态", "group": "nature", "subs": ["苗木", "造林工程", "生态修复", "林业调查"]}, {"id": "f_aqua", "name": "水产 / 养殖", "group": "nature", "subs": ["水产养殖", "种苗", "水产加工", "渔具"]}, {"id": "f_outdoor", "name": "户外 / 自然", "group": "nature", "subs": ["户外俱乐部", "营地教育", "自然教育", "户外装备"]}, {"id": "f_space", "name": "宇宙 / 航天", "group": "science", "subs": ["航天工程", "卫星应用", "天文科普", "空间科学"]}, {"id": "f_robot", "name": "机器人", "group": "science", "subs": ["工业机器人", "服务机器人", "自动化集成", "机器人教育"]}, {"id": "f_machine", "name": "机械", "group": "science", "subs": ["机械设计", "设备维护", "工艺工程", "精密制造"]}, {"id": "f_electric", "name": "电气 / 电机", "group": "science", "subs": ["电气设计", "电机研发", "现场调试", "电气销售"]}, {"id": "f_chem", "name": "化工 / 材料", "group": "science", "subs": ["化工工艺", "材料研发", "实验室分析", "化工安全"]}, {"id": "f_civil", "name": "土木 / 建筑", "group": "science", "subs": ["结构设计", "施工管理", "造价", "建筑设计"]}, {"id": "f_energy", "name": "能源 / 电力", "group": "science", "subs": ["电力系统", "新能源", "储能", "碳资产"]}, {"id": "f_clinic", "name": "临床医疗", "group": "health", "subs": ["临床", "医美", "健康管理", "医药代表"]}, {"id": "f_nurse", "name": "护理", "group": "health", "subs": ["临床护理", "养老照护", "护理管理", "医美护理"]}, {"id": "f_rehab", "name": "康复", "group": "health", "subs": ["运动康复", "物理治疗", "儿童康复", "康复器械"]}, {"id": "f_pharma", "name": "药学", "group": "health", "subs": ["临床研究", "药物研发", "药店", "药品注册"]}, {"id": "f_medtech", "name": "医疗技术", "group": "health", "subs": ["检验", "影像", "器械技术", "医疗器械销售"]}, {"id": "f_nutrition", "name": "营养", "group": "health", "subs": ["临床营养", "运动营养", "食品营养研发", "体重管理"]}, {"id": "f_psych", "name": "心理", "group": "health", "subs": ["心理咨询", "心理测评", "EAP", "心理内容"]}, {"id": "f_public", "name": "公共卫生", "group": "health", "subs": ["疾控", "健康宣教", "卫生管理", "公共卫生项目"]}, {"id": "f_school", "name": "学校教育", "group": "education", "subs": ["K12 教师", "教研", "教务", "国际学校"]}, {"id": "f_child", "name": "幼儿保育", "group": "education", "subs": ["幼师", "托育", "早教", "幼儿园管理"]}, {"id": "f_train", "name": "培训 / 讲师", "group": "education", "subs": ["企业培训", "课程设计", "训练营教练", "演讲教练"]}, {"id": "f_career", "name": "职业规划", "group": "education", "subs": ["生涯咨询", "求职辅导", "HR", "校园招聘"]}, {"id": "f_familyed", "name": "家庭教育", "group": "education", "subs": ["家庭教育指导", "亲子课程", "家长社群", "青少年营地"]}, {"id": "f_intl", "name": "留学 / 国际", "group": "education", "subs": ["留学申请", "国际学校", "跨文化项目", "语言培训"]}, {"id": "f_video", "name": "视频", "group": "media", "subs": ["短视频", "广告片", "纪录片", "直播"]}, {"id": "f_photo", "name": "摄影", "group": "media", "subs": ["商业摄影", "人像摄影", "产品摄影", "图片后期"]}, {"id": "f_film", "name": "电影", "group": "media", "subs": ["制片", "影视后期", "编剧", "影院运营"]}, {"id": "f_tv", "name": "电视", "group": "media", "subs": ["节目编导", "台网运营", "内容审核", "电视制作"]}, {"id": "f_anime", "name": "动画", "group": "media", "subs": ["原画", "动画制作", "分镜", "动画周边"]}, {"id": "f_comic", "name": "漫画", "group": "media", "subs": ["漫画连载", "条漫", "分镜", "漫画周边"]}, {"id": "f_game", "name": "游戏", "group": "media", "subs": ["游戏策划", "关卡设计", "电竞运营", "游戏美术"]}, {"id": "f_publish", "name": "出版 / 书", "group": "media", "subs": ["图书编辑", "版权", "书店运营", "有声书"]}, {"id": "f_show", "name": "演艺", "group": "media", "subs": ["演员", "主播", "演出运营", "配音"]}, {"id": "f_graphic", "name": "平面设计", "group": "design", "subs": ["品牌设计", "UI 设计", "电商视觉", "包装设计"]}, {"id": "f_productd", "name": "商品设计", "group": "design", "subs": ["工业设计", "产品外观", "包装设计", "设计研究"]}, {"id": "f_interior", "name": "室内设计", "group": "design", "subs": ["家装设计", "工装设计", "软装", "空间陈列"]}, {"id": "f_fashion", "name": "时尚", "group": "design", "subs": ["服装设计", "买手", "造型", "服装供应链"]}, {"id": "f_beauty", "name": "美容", "group": "design", "subs": ["化妆", "皮肤管理", "美甲", "美业门店"]}, {"id": "f_art", "name": "艺术", "group": "design", "subs": ["插画", "策展", "艺术教育", "艺术品交易"]}, {"id": "f_music", "name": "音乐", "group": "music", "subs": ["音乐制作", "编曲", "音乐运营", "现场演出"]}, {"id": "f_inst", "name": "乐器", "group": "music", "subs": ["乐器演奏", "乐器教学", "乐器销售", "乐器维修"]}, {"id": "f_poem", "name": "诗歌 / 文字", "group": "music", "subs": ["文案", "诗歌创作", "内容编辑", "品牌文案"]}, {"id": "f_act", "name": "表演", "group": "music", "subs": ["话剧", "影视表演", "配音", "表演教学"]}, {"id": "f_culture", "name": "文娱活动", "group": "music", "subs": ["活动策划", "演出运营", "俱乐部主理", "文旅活动"]}, {"id": "f_finance", "name": "金融", "group": "business", "subs": ["投研", "风控", "财富管理", "投行", "私募"]}, {"id": "f_biz", "name": "商务", "group": "business", "subs": ["BD", "渠道", "商务谈判", "生态合作"]}, {"id": "f_operate", "name": "经营", "group": "business", "subs": ["门店运营", "连锁管理", "创业", "业务负责人"]}, {"id": "f_mkt", "name": "市场营销", "group": "business", "subs": ["品牌营销", "增长", "内容营销", "活动策划"]}, {"id": "f_pr", "name": "宣传 / 公关", "group": "business", "subs": ["公关", "媒介", "品牌传播", "危机公关"]}, {"id": "f_econ", "name": "经济", "group": "business", "subs": ["行业研究", "宏观研究", "政策研究", "投资研究"]}, {"id": "f_realestate", "name": "不动产", "group": "business", "subs": ["房产经纪", "资产评估", "商业地产", "物业管理"]}, {"id": "f_consult", "name": "咨询", "group": "business", "subs": ["管理咨询", "行业顾问", "独立顾问", "财税咨询"]}, {"id": "f_it", "name": "IT / 运维", "group": "tech", "subs": ["运维", "网络工程", "技术支持", "信息安全"]}, {"id": "f_software", "name": "软件", "group": "tech", "subs": ["后端", "前端", "测试", "产品经理", "技术管理"]}, {"id": "f_ai", "name": "人工智能", "group": "tech", "subs": ["算法", "AI 应用", "提示词工程", "AI 产品"]}, {"id": "f_data", "name": "数据", "group": "tech", "subs": ["数据分析", "数据工程", "数据产品", "商业分析"]}, {"id": "f_hardware", "name": "电脑 / 硬件", "group": "tech", "subs": ["硬件设计", "嵌入式", "硬件评测", "装机"]}, {"id": "f_cook", "name": "烹饪", "group": "life", "subs": ["中餐", "西餐", "菜品研发", "餐饮创业"]}, {"id": "f_bake", "name": "点心 / 烘焙", "group": "life", "subs": ["面包", "甜品", "私房烘焙", "烘焙供应链"]}, {"id": "f_wine", "name": "酒", "group": "life", "subs": ["品酒", "酿酒", "酒类买手", "酒吧运营"]}, {"id": "f_food", "name": "食品", "group": "life", "subs": ["食品研发", "品控", "食品品牌", "供应链"]}, {"id": "f_diet", "name": "饮食 / 餐饮", "group": "life", "subs": ["餐饮运营", "美食内容", "菜单设计", "团餐"]}, {"id": "f_daily", "name": "日常生活", "group": "life", "subs": ["生活内容", "家居整理", "生活选品", "社区团购"]}, {"id": "f_leisure", "name": "休闲", "group": "life", "subs": ["休闲产品", "营地", "俱乐部", "桌游"]}, {"id": "f_relax", "name": "放松", "group": "life", "subs": ["芳疗", "冥想", "疗愈空间", "SPA"]}, {"id": "f_welfare", "name": "社会福利", "group": "social", "subs": ["社工", "公益项目", "基金会", "社区服务"]}, {"id": "f_politics", "name": "政治", "group": "social", "subs": ["公共事务", "政策研究", "GR", "基层治理"]}, {"id": "f_law", "name": "法律", "group": "social", "subs": ["诉讼", "非诉", "法务", "合规"]}, {"id": "f_police", "name": "治安", "group": "social", "subs": ["警务", "安保", "风控调查", "应急管理"]}, {"id": "f_admin", "name": "行政", "group": "social", "subs": ["行政", "综合管理", "办公室运营", "采购"]}, {"id": "f_service", "name": "服务业", "group": "social", "subs": ["酒店服务", "餐饮服务", "客户体验", "物业服务"]}, {"id": "f_religion", "name": "宗教", "group": "social", "subs": ["宗教研究", "文化传播", "公益", "场所管理"]}, {"id": "f_philo", "name": "哲学", "group": "social", "subs": ["通识教育", "内容创作", "研究", "出版"]}, {"id": "f_car", "name": "汽车", "group": "transport", "subs": ["汽车工程", "车评", "售后技术", "汽车销售"]}, {"id": "f_plane", "name": "飞机", "group": "transport", "subs": ["航空维修", "飞行", "航空运营", "航空制造"]}, {"id": "f_ship", "name": "船", "group": "transport", "subs": ["船舶工程", "航海", "港口运营", "船舶设计"]}, {"id": "f_rail", "name": "火车", "group": "transport", "subs": ["轨道交通", "铁路运营", "信号工程", "铁路设备"]}, {"id": "f_bike", "name": "自行车", "group": "transport", "subs": ["自行车设计", "骑行教练", "骑行装备", "赛事运营"]}, {"id": "f_transport", "name": "运输", "group": "transport", "subs": ["运输调度", "物流规划", "车队管理", "货运平台"]}, {"id": "f_logistics", "name": "物流", "group": "transport", "subs": ["仓储", "供应链", "跨境物流", "冷链"]}, {"id": "f_travel", "name": "旅行", "group": "travel", "subs": ["定制游", "旅行内容", "旅行社", "目的地运营"]}, {"id": "f_sight", "name": "观光", "group": "travel", "subs": ["景区运营", "导游", "文旅策划", "票务"]}, {"id": "f_park", "name": "主题公园", "group": "travel", "subs": ["乐园运营", "游乐设计", "演艺统筹", "IP 授权"]}, {"id": "f_hotel", "name": "旅馆", "group": "travel", "subs": ["酒店运营", "民宿", "收益管理", "餐饮部"]}, {"id": "f_love", "name": "恋爱 / 情感", "group": "people", "subs": ["情感咨询", "婚恋顾问", "情感内容", "相亲社群"]}, {"id": "f_marry", "name": "结婚", "group": "people", "subs": ["婚庆策划", "婚纱设计", "婚姻咨询", "婚纱摄影"]}, {"id": "f_wedding", "name": "婚礼", "group": "people", "subs": ["婚礼主持", "婚礼策划", "婚礼摄影", "婚礼场地"]}, {"id": "f_funeral", "name": "葬礼", "group": "people", "subs": ["殡葬服务", "生命礼仪", "临终关怀", "殡葬用品"]}, {"id": "f_family", "name": "家庭", "group": "people", "subs": ["家庭教育", "家庭整理", "亲子活动", "家庭理财"]}, {"id": "f_sex", "name": "性 / 亲密关系", "group": "people", "subs": ["性教育", "健康科普", "亲密关系咨询", "情趣用品"]}, {"id": "f_military", "name": "军事 / 国防", "group": "social", "subs": ["军工制造", "国防科研", "军事媒体", "安防"]}, {"id": "f_ocean", "name": "海洋", "group": "nature", "subs": ["海洋工程", "海洋科研", "水产捕捞", "港口航运"]}, {"id": "f_geo", "name": "地质 / 地理", "group": "science", "subs": ["地质勘探", "工程测绘", "灾害评估", "地理信息"]}, {"id": "f_weather", "name": "气象", "group": "science", "subs": ["气象预报", "气候研究", "农业气象", "气象服务"]}, {"id": "f_archaeo", "name": "考古 / 历史", "group": "social", "subs": ["田野考古", "博物馆", "文物保护", "历史内容"]}, {"id": "f_charity", "name": "公益 / 志愿", "group": "social", "subs": ["公益项目", "基金会", "志愿服务", "社会企业"]}, {"id": "f_aviation", "name": "航空 / 机场", "group": "transport", "subs": ["航空运营", "机场管理", "航空维修", "空乘地勤"]}], "meta": {"kicker": "CAREER × PASSION · 找到你擅长且喜欢的事情", "title": "找到你擅长且喜欢的事情", "line1": "77 道题，约 15 分钟。", "line2": "才能 · 价值观 · 行业 · 性格 · 命理，一次答完。", "note": "不是心理测试 · 不出诊断 · 不承诺结果"}};
+const META = DATA.meta || {};
+if (META.title) document.title = META.title + ' · ' + ((DATA.questions || []).length) + ' 题';
+const LIKERT = ["从不","很少","有时","经常","总是"];
+const LIMIT = {multi:3};
+const state = { idx:-1, answers:{} };
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function save(){ try{ localStorage.setItem('lt_answers', JSON.stringify(state.answers)); localStorage.setItem('lt_idx', state.idx); }catch(e){} }
+function load(){ try{ const s = localStorage.getItem('lt_answers'); if(s) state.answers = JSON.parse(s); }catch(e){} }
+function clearSaved(){ try{ localStorage.removeItem('lt_answers'); localStorage.removeItem('lt_idx'); }catch(e){} }
+
+function start(resume){
+  load();
+  const saved = parseInt(localStorage.getItem('lt_idx') || '-1', 10);
+  state.idx = (resume && saved >= 0 && saved < DATA.questions.length) ? saved : 0;
+  $('#main').style.padding = '26px 22px 120px';
+  $('#hdr').style.display = 'block';
+  $('#ftr').style.display = 'flex';
+  render();
+}
+
+function render(){
+  const q = DATA.questions[state.idx];
+  if(!q){ return done(); }
+  const n = DATA.questions.length;
+  $('#pos').textContent = (state.idx+1) + ' / ' + n;
+  $('#prog').style.width = ((state.idx+1)/n*100) + '%';
+  $('#mod').textContent = ({talent:'才能', value:'价值观', passion:'热情', open:'开放题', check:'校验', profile:'背景', personality:'性格'})[q.module] || q.module;
+  $('#tip').textContent = q.type === 'likert' ? '凭第一反应，不要想太久' : (q.type==='open' ? '越具体越好，可跳过' : '选最像你的');
+
+  let h = `<div class="qno">Q${state.idx+1}</div><div class="stem">${esc(q.stem)}</div>`;
+  const opts = q.dynamic ? dynOptions(q) : (q.options || []);
+
+  if(q.type === 'choice' || q.type === 'check_likert'){
+    if(q.type === 'choice'){
+      h += '<div class="sub">单选</div>';
+      opts.forEach(o=>{
+        const sel = state.answers[q.id] === o.key ? ' sel' : '';
+        h += `<button class="opt${sel}" data-k="${esc(o.key)}"><span class="k">${esc(o.key)}</span>${esc(o.text)}</button>`;
+      });
+    }else{
+      h += '<div class="sub">1 = 完全不符合，5 = 完全符合</div><div class="likert">';
+      LIKERT.forEach((t,i)=>{ const v=i+1; const sel = Number(state.answers[q.id])===v?' sel':'';
+        h += `<button data-v="${v}" class="${sel}">${v}<br>${t}</button>`; });
+      h += '</div>';
+    }
+  }
+  else if(q.type === 'likert'){
+    h += '<div class="sub">1 = 从不，5 = 总是</div><div class="likert">';
+    LIKERT.forEach((t,i)=>{ const v=i+1; const sel = Number(state.answers[q.id])===v?' sel':'';
+      h += `<button data-v="${v}" class="${sel}">${v}<br>${t}</button>`; });
+    h += '</div>';
+  }
+  else if(q.type === 'ranking'){
+    h += '<div class="sub">按顺序点选，第一下 = 最重要</div><div class="rank">';
+    const order = state.answers[q.id] || [];
+    q.items.forEach(it=>{
+      const pos = order.indexOf(it.key);
+      h += `<div class="item${pos>=0?' sel':''}" data-k="${esc(it.key)}"><span class="num">${pos>=0?pos+1:''}</span>${esc(it.text)}</div>`;
+    });
+    h += `</div><button class="opt ghost" id="resetRank" style="margin-top:4px;width:auto;padding:8px 16px;display:inline-block;font-size:13px">重排</button>`;
+  }
+  else if(q.type === 'multi'){
+    const chosen = state.answers[q.id] || [];
+    h += `<div class="sub">已选 ${chosen.length} / ${q.max_pick||3}</div>`;
+    if(q.grouped){
+      (DATA.groups||[]).forEach(g=>{
+        const items = opts.filter(o=>o.group===g.id);
+        if(!items.length) return;
+        h += `<div class="ghead">${esc(g.name)}</div><div class="chips">`;
+        items.forEach(o=>{
+          const on = chosen.includes(o.key);
+          h += `<button class="chip2${on?' sel':''}" data-k="${esc(o.key)}">${on?'✓ ':''}${esc(o.text)}</button>`;
+        });
+        h += '</div>';
+      });
+    }else{
+      h += '<div class="multi">';
+      opts.forEach(o=>{
+        const sel = chosen.includes(o.key) ? ' sel' : '';
+        h += `<button class="opt${sel}" data-k="${esc(o.key)}"><span class="k">${chosen.includes(o.key)?'✓':'○'}</span>${esc(o.text)}</button>`;
+      });
+      h += '</div>';
+    }
+  }
+  else if(q.type === 'date'){
+    const val = state.answers[q.id] || '';
+    const lunar = state.answers['P6'] === 'B';
+    const calName = lunar ? '阴历（农历）' : '阳历（公历）';
+    const demo = lunar ? '1984-10-24' : '1984-11-16';
+    h += `<input type="text" id="dateIn" inputmode="numeric" maxlength="10" value="${esc(val)}"
+            placeholder="例如 ${demo}"
+            style="width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:20px;letter-spacing:2px;font-family:inherit">
+          <div class="sub" style="margin-top:10px">你上一题选的是<b>${calName}</b>，请按${lunar ? '农历' : '公历'}的年月日填。</div>
+          <div class="sub" style="margin-top:6px;color:#b08968">直接打数字就行，横杠会自动补上。${lunar ? '系统会自动帮你换算成公历。' : '就是身份证上的那个日期。'}</div>`;
+  }
+  else if(q.type === 'tel'){
+    const val = state.answers[q.id] || '';
+    h += `<input type="tel" id="telIn" inputmode="numeric" maxlength="11" value="${esc(val)}"
+            placeholder="11 位手机号"
+            style="width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:18px;letter-spacing:1px;font-family:inherit">
+          <div class="sub" style="margin-top:10px">只用于交付报告，不会外传</div>`;
+  }
+  else if(q.type === 'open'){
+    const val = state.answers[q.id] || '';
+    h += `<textarea maxlength="${q.max_chars||200}" placeholder="写具体一点，报告会引用你自己的话">${esc(val)}</textarea>
+          <div class="count"><span id="cc">${val.length}</span> / ${q.max_chars||200}</div>`;
+  }
+
+  $('#main').innerHTML = h;
+  $('#prev').disabled = state.idx === 0;
+  $('#next').textContent = state.idx === DATA.questions.length-1 ? '提交' : '下一题';
+
+  bind(q);
+}
+
+function dynOptions(q){
+  const F = DATA.fields || [];
+  const pick = (ids) => F.filter(f => ids.includes(f.id));
+  const fmt = list => list.map(f => ({key: f.id, text: f.name, group: f.group}));
+  if(q.dynamic === 'all_fields') return fmt(F);
+  if(q.dynamic === 'picked20')  return fmt(pick(state.answers['Q31'] || []));
+  if(q.dynamic === 'picked10')  return fmt(pick(state.answers['Q32'] || []));
+  if(q.dynamic === 'picked5')   return fmt(pick(state.answers['Q33'] || []));
+  if(q.dynamic === 'subs' || q.dynamic === 'subs2'){
+    const ids = state.answers['Q34'] || [];
+    const idx = q.dynamic === 'subs2' ? 1 : 0;
+    const f = F.find(x => x.id === ids[idx]);
+    const subs = (f && f.subs) || [];
+    return subs.map((s, i) => ({key: String(i), text: s}));
+  }
+  return q.options || [];
+}
+
+function bind(q){  if(q.type === 'choice'){
+    $('#main').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      state.answers[q.id] = b.dataset.k; save(); render();
+    });
+  }
+  if(q.type === 'likert' || q.type === 'check_likert'){
+    $('#main').querySelectorAll('.likert button').forEach(b=>b.onclick=()=>{
+      state.answers[q.id] = Number(b.dataset.v); save(); render();
+    });
+  }
+  if(q.type === 'ranking'){
+    $('#main').querySelectorAll('.rank .item').forEach(el=>el.onclick=()=>{
+      let order = state.answers[q.id] || [];
+      const k = el.dataset.k;
+      if(order.includes(k)) order = order.filter(x=>x!==k);
+      else order = [...order, k];
+      state.answers[q.id] = order; save(); render();
+    });
+    const r = $('#resetRank'); if(r) r.onclick=()=>{ state.answers[q.id]=[]; save(); render(); };
+  }
+  if(q.type === 'multi'){
+    $('#main').querySelectorAll('.opt, .chip2').forEach(b=>b.onclick=()=>{
+      let arr = state.answers[q.id] || [];
+      const k = b.dataset.k;
+      if(arr.includes(k)) arr = arr.filter(x=>x!==k);
+      else { if(arr.length >= (q.max_pick||3)) return; arr = [...arr, k]; }
+      state.answers[q.id] = arr; save(); render();
+    });
+  }
+  if(q.type === 'open'){
+    const ta = $('#main').querySelector('textarea');
+    ta.oninput = ()=>{ state.answers[q.id] = ta.value; $('#cc').textContent = ta.value.length; save(); };
+  }
+  if(q.type === 'date'){
+    const el = $('#dateIn');
+    el.oninput = ()=>{
+      let v = el.value.replace(/\D/g, '').slice(0, 8);
+      if (v.length > 6) v = v.slice(0,4) + '-' + v.slice(4,6) + '-' + v.slice(6);
+      else if (v.length > 4) v = v.slice(0,4) + '-' + v.slice(4);
+      el.value = v; state.answers[q.id] = v; save();
+    };
+  }
+  if(q.type === 'tel'){
+    const el = $('#telIn');
+    el.oninput = ()=>{
+      const v = el.value.replace(/\D/g, '').slice(0, 11);
+      el.value = v; state.answers[q.id] = v; save();
+    };
+  }
+}
+
+function done(){
+  $('#hdr').style.display='none'; $('#ftr').style.display='none';
+  const json = JSON.stringify(state.answers, null, 2);
+  const phone = state.answers['P0'] || '';
+  $('#main').innerHTML = `<div class="done">
+    <h2>答完了</h2>
+    <p id="subStatus">正在提交…</p>
+    <div class="row" style="display:none" id="fallback">
+      <button id="dl">下载 answers.json</button><button id="cp">复制答案</button>
+    </div>
+    <pre id="out" style="display:none">${esc(json)}</pre>
+    <div class="row"><button id="again">重新开始</button></div>
+  </div>`;
+  $('#dl').onclick = ()=>{
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([json], {type:'application/json'}));
+    a.download = 'answers.json'; a.click();
+  };
+  $('#cp').onclick = ()=>{ navigator.clipboard.writeText(json); $('#cp').textContent='已复制'; };
+  $('#again').onclick = ()=>{ state.answers={}; state.idx=0; save(); $('#hdr').style.display='block'; $('#ftr').style.display='flex'; render(); };
+
+  const st = $('#subStatus');
+  const send = (phoneNo, email) => {
+    state.answers['P0'] = phoneNo;
+    if (email) state.answers['P7'] = email;
+    const sid = (function(){
+      let s = localStorage.getItem('lt_sid');
+      if (!s) { s = 's' + Date.now() + Math.random().toString(36).slice(2, 8); localStorage.setItem('lt_sid', s); }
+      return s;
+    })();
+    // 先落到本地：就算这一秒退出，下次打开也会自动补交
+    try {
+      localStorage.setItem('lt_pending', JSON.stringify({
+        phone: phoneNo, email: email || '', answers: state.answers, sid: sid, ts: Date.now()
+      }));
+    } catch (e) {}
+
+    st.innerHTML = '正在提交，请稍等 2–3 秒…<div style="font-size:13px;color:var(--sub);margin-top:6px">（提交中，稍等出现编号再退出）</div>';
+
+    fetch('/api/submit', {method:'POST', headers:{'Content-Type':'application/json'},
+      keepalive: true,
+      body: JSON.stringify({phone: phoneNo, email: email || '', sid: sid, answers: state.answers})})
+      .then(r => r.json())
+      .then(j => {
+        if (!j.ok) throw new Error(j.error || 'bad');
+        localStorage.removeItem('lt_pending');
+        localStorage.removeItem('lt_sid');
+        st.innerHTML = `已提交（编号 <b>${j.id}</b>）。正在生成你的报告，大约 1 分钟…`;
+        let n = 0;
+        const timer = setInterval(() => {
+          n++;
+          fetch('/api/status?id=' + encodeURIComponent(j.id)).then(r => r.json()).then(s => {
+            if (s.ready) {
+              clearInterval(timer);
+              st.innerHTML = `<b>你的报告出来了</b>
+                <div style="font-size:13px;color:var(--sub);margin:4px 0 10px">长按图片可保存；要看高清版用下面的链接</div>
+                <img src="${s.mobile || s.png}" alt="报告" style="width:100%;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.12)">
+                <div style="margin-top:12px;font-size:14px">
+                  <a href="${s.pdf}" target="_blank" style="color:var(--accent);font-weight:700">下载 PDF（高清）</a>
+                  <span style="color:var(--sub)">　·　</span>
+                  <a href="${s.png}" target="_blank" style="color:var(--accent)">高清长图</a>
+                </div>
+                <div style="font-size:13px;color:var(--sub);margin-top:8px">顾问会在 24 小时内联系你，附 15 分钟语音解读。</div>`;
+            } else if (n > 90) {
+              clearInterval(timer);
+              st.textContent = '生成时间有点长，顾问会手动发给你。';
+            }
+          }).catch(()=>{});
+        }, 4000);
+      })
+      .catch(e => {
+        st.textContent = '提交没成功，请把下面这段答案复制发给顾问。';
+        $('#fallback').style.display = 'flex'; $('#out').style.display = 'block';
+      });
+  };
+
+  if (!location.protocol.startsWith('http')) {
+    st.textContent = '请把下面这段答案复制发给顾问（或下载文件）。';
+    $('#fallback').style.display = 'flex'; $('#out').style.display = 'block';
+    return;
+  }
+  if (!/^1\d{10}$/.test(phone)) {
+    // 老版本答完的情况：在这里补手机号再提交
+    st.innerHTML = `<b>还差一步</b>
+      <div style="font-size:14px;color:var(--sub);margin:4px 0 10px">请填一个手机号，用于交付报告</div>
+      <input id="ph2" type="tel" inputmode="numeric" maxlength="11" placeholder="11 位手机号"
+        style="width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:18px;letter-spacing:1px;font-family:inherit">
+      <div style="font-size:14px;color:var(--sub);margin:14px 0 6px">邮箱（可选）：报告生成后会发到这里，你可以先关掉页面</div>
+      <input id="em2" type="email" placeholder="name@example.com"
+        style="width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:16px;font-family:inherit">
+      <button class="cta" id="go2" style="margin-top:12px;width:100%;border:none;border-radius:14px;padding:14px;background:var(--accent);color:#fff;font-size:16px;font-weight:700;font-family:inherit">提交</button>`;
+    $('#go2').onclick = () => {
+      const v = ($('#ph2').value || '').replace(/\D/g, '');
+      if (!/^1\d{10}$/.test(v)) { alert('请输入 11 位手机号'); return; }
+      st.textContent = '正在提交…';
+      send(v, ($('#em2').value || '').trim());
+    };
+    return;
+  }
+
+  // 常规情况：手机号已有，问邮箱（可跳过）
+  st.innerHTML = `<b>最后一步</b>
+    <div style="font-size:14px;color:var(--sub);margin:4px 0 10px">留个邮箱，报告生成后我们直接发给你——这样你可以先关掉页面去做别的。</div>
+    <input id="em1" type="email" placeholder="name@example.com（可跳过）"
+      style="width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:16px;font-family:inherit">
+    <button class="cta" id="go1" style="margin-top:12px;width:100%;border:none;border-radius:14px;padding:14px;background:var(--accent);color:#fff;font-size:16px;font-weight:700;font-family:inherit">提交，生成报告</button>
+    <div style="margin-top:10px;text-align:center"><a href="#" id="skipMail" style="font-size:13px;color:var(--sub)">不发邮件，直接看结果</a></div>`;
+  $('#go1').onclick = () => {
+    st.textContent = '正在提交…';
+    send(phone, ($('#em1').value || '').trim());
+  };
+  $('#skipMail').onclick = (e) => {
+    e.preventDefault();
+    st.textContent = '正在提交…';
+    send(phone, '');
+  };
+}
+
+function cover(){
+  const M = DATA.meta || {};
+  const n = (DATA.questions || []).length;
+  load();
+  const answered = Object.keys(state.answers || {}).length;
+  const savedIdx = parseInt(localStorage.getItem('lt_idx') || '-1', 10);
+  const resumeAt = Math.max(1, Math.min(n, savedIdx + 1));
+  $('#hdr').style.display='none'; $('#ftr').style.display='none';
+  $('#main').style.padding = '0';
+  $('#main').innerHTML = `<div class="hero">
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+    <div class="inner">
+    <div class="k">CAREER × PASSION</div>
+    <h1>找到你<br><em>擅长</em>且<em>喜欢</em><br>的事情</h1>
+    <p class="lead">${esc(M.line1 || (n + ' 道题，约 15 分钟。'))}<br>
+      不是性格测试，是给你一份能落地的方向。</p>
+    <div class="feat">
+      <div class="row"><div class="ic">01</div><div><b>3 个你天生擅长的事</b>
+        <span>不是技能，是你做起来不费劲的那部分</span></div></div>
+      <div class="row"><div class="ic">02</div><div><b>2 个值得深耕的行业</b>
+        <span>从 100 个行业里，三轮筛出来</span></div></div>
+      <div class="row"><div class="ic">03</div><div><b>岗位 + 生意方向</b>
+        <span>具体到门槛、代价和 90 天第一步</span></div></div>
+    </div>
+    ${answered > 0
+      ? `<button class="cta" id="go">继续上次 · 第 ${resumeAt} 题<small>已答 ${answered} 题，不会丢</small></button>
+         <button class="alt" id="fresh">重新开始</button>`
+      : `<button class="cta" id="go">开始测试 · 约 15 分钟<small>做完立刻看到你的方向</small></button>
+         <button class="alt" id="demo">先用样例看看报告长什么样</button>`}
+    <div class="trustline">${esc(M.note || '不是心理测试 · 不出诊断 · 不承诺结果')}</div>
+    </div>
+  </div>`;
+  $('#go').onclick = () => start(answered > 0);
+  const fr = $('#fresh');
+  if (fr) fr.onclick = () => { state.answers = {}; state.idx = 0; clearSaved(); start(false); };
+  const dm = $('#demo');
+  if (dm) dm.onclick = ()=>{ state.answers = DEMO; state.idx = DATA.questions.length; done(); };
+}
+
+const DEMO = {
+  "Q1":"B","Q2":"A","Q3":"D","Q4":"A","Q5":"B","Q6":"D",
+  "Q7":5,"Q8":4,"Q9":3,"Q10":4,"Q11":3,"Q12":2,"Q13":5,"Q14":4,"Q15":3,"Q16":3,"Q17":2,"Q18":4,
+  "Q19":"A","Q20":"A","Q21":"A","Q22":"A",
+  "Q23":["1","2","3","4"],"Q24":["1","2","3","4"],"Q25":["1","2","3","4"],"Q26":["1","2","3","4"],
+  "Q27":["1","2","3"],"Q28":[],"Q29":[],"Q30":["1"],
+  "Q31":3,"Q32":4,"Q33":5,"Q34":1,"Q35":2,"Q36":2,"Q37":1,"Q38":1,"Q39":3,
+  "Q40":"给一个乱成一团的运营数据，两天内理成能看懂的看板，做完很爽。",
+  "Q41":"朋友都说找我看简历、帮我梳理职业方向。",
+  "Q42":"做一个帮人看清自己的产品。",
+  "C1":"B","C2":2,"C3":4
+};
+
+$('#prev').onclick = ()=>{ if(state.idx>0){ state.idx--; save(); render(); } };
+$('#next').onclick = ()=>{
+  const q = DATA.questions[state.idx];
+  if (q && q.type === 'tel' && String(state.answers[q.id] || '').length !== 11) {
+    alert('请输入 11 位手机号'); return;
+  }
+  if (q && q.type === 'multi' && q.dynamic && !(state.answers[q.id] || []).length) {
+    alert('这一题至少要选 1 个'); return;
+  }
+  if (q && q.type === 'date') {
+    const v = String(state.answers[q.id] || '');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) { alert('生日按 1984-11-16 这样填'); return; }
+    const [y, m, dd] = v.split('-').map(Number);
+    if (y < 1900 || y > 2020 || m < 1 || m > 12 || dd < 1 || dd > 31) {
+      alert('日期看起来不对，检查一下'); return;
+    }
+  }
+  state.idx++; save(); render();
+};
+
+const _p = new URLSearchParams(location.search);
+if(_p.has('q')){
+  load();
+  state.idx = Math.max(0, Math.min(DATA.questions.length-1, parseInt(_p.get('q'),10)-1 || 0));
+  $('#hdr').style.display='block'; $('#ftr').style.display='flex';
+  render();
+}else{
+  cover();
+}
+
+// 上次提交如果没确认（关得太快），打开页面时自动补交一次
+function retryPending(){
+  try{
+    const raw = localStorage.getItem('lt_pending');
+    if(!raw) return;
+    const p = JSON.parse(raw);
+    if(!p || !p.sid || Date.now() - (p.ts||0) > 12*3600*1000){ localStorage.removeItem('lt_pending'); return; }
+    fetch('/api/submit', {method:'POST', headers:{'Content-Type':'application/json'}, keepalive:true,
+      body: JSON.stringify({phone:p.phone, email:p.email||'', sid:p.sid, answers:p.answers})})
+      .then(r=>r.json())
+      .then(j=>{
+        if(j && j.ok){
+          localStorage.removeItem('lt_pending');
+          localStorage.removeItem('lt_sid');
+          localStorage.removeItem('lt_answers');
+          localStorage.removeItem('lt_idx');
+          const d=document.createElement('div');
+          d.style.cssText='position:fixed;left:0;right:0;bottom:0;background:#2f5d50;color:#fff;padding:12px 16px;font-size:14px;z-index:99;text-align:center';
+          d.textContent='上次的答卷已补交成功（编号 '+j.id+'），报告生成后会发你邮箱。';
+          document.body.appendChild(d);
+          setTimeout(()=>d.remove(), 12000);
+        }
+      }).catch(()=>{});
+  }catch(e){}
+}
+retryPending();
+</script>
+</body>
+</html>

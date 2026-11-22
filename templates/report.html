@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>{{ meta.id }} · 你的使用说明书</title>
+<style>
+  :root{
+    --ink:#1c1a17; --sub:#6b655c; --line:#e6ded2;
+    --paper:#fbf8f2; --accent:#b8552f; --accent2:#2f5d50;
+    --gold:#c9a227;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    width:750px; margin:0 auto; background:#fff; color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+    font-size:16px; line-height:1.85; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{padding:56px 52px 64px}
+  /* cover */
+  .cover{background:var(--paper);padding:64px 52px 56px;border-bottom:1px solid var(--line)}
+  .kicker{font-size:12px;letter-spacing:.28em;color:var(--accent);text-transform:uppercase}
+  .cover h1{font-size:44px;line-height:1.25;margin:18px 0 10px;font-weight:800;letter-spacing:-.5px}
+  .cover .sub{font-size:18px;color:var(--sub)}
+  .meta{margin-top:28px;font-size:12px;color:var(--sub);letter-spacing:.06em}
+  .meta span{margin-right:18px}
+  /* section */
+  section{padding:52px 52px 8px}
+  .sec-no{font-size:12px;letter-spacing:.24em;color:var(--accent);margin-bottom:8px}
+  h2{font-size:26px;line-height:1.35;margin-bottom:18px;font-weight:800}
+  h2 em{font-style:normal;color:var(--accent)}
+  p{margin-bottom:14px;color:#2b2723}
+  .lead{font-size:19px;line-height:1.8;color:#2b2723}
+  .muted{color:var(--sub);font-size:14px}
+  /* talent card */
+  .talent{border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin:18px 0;background:#fff}
+  .talent .top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+  .talent h3{font-size:21px;font-weight:800}
+  .score{font-size:13px;color:var(--sub)}
+  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;margin-left:8px;vertical-align:middle}
+  .b-high{background:#eef4ee;color:#2f5d50}
+  .b-mid{background:#fdf3e3;color:#8a6420}
+  .quote{border-left:3px solid var(--gold);padding:6px 0 6px 16px;margin:14px 0;color:#4a443c;font-size:15px}
+  .shadow{background:#faf4ee;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:14px;color:#6b5a4a}
+  .shadow b{color:var(--accent)}
+  /* bars */
+  .bar-row{margin:12px 0}
+  .bar-label{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
+  .bar{height:10px;background:#efe9df;border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--accent2);border-radius:99px}
+  .bar.gold i{background:var(--gold)}
+  /* job */
+  .job{border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:16px 0}
+  .job .head{display:flex;justify-content:space-between;align-items:baseline}
+  .job h3{font-size:20px;font-weight:800}
+  .job .match{font-size:12px;color:var(--accent);font-weight:700}
+  .job .ind{font-size:13px;color:var(--sub);margin:2px 0 12px}
+  .job dl{display:grid;grid-template-columns:76px 1fr;gap:6px 12px;font-size:14px}
+  .job dt{color:var(--sub)}
+  .job .steps{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+  .job .steps ol{margin-left:18px;font-size:14px}
+  .job .steps li{margin:4px 0}
+  /* pitfall */
+  .pit{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+  .pit .item{border-left:3px solid var(--accent);padding-left:14px}
+  .pit b{font-size:15px}
+  .pit .sig{font-size:14px;color:var(--sub)}
+  /* experiment */
+  .day{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .day:last-child{border-bottom:none}
+  .day .n{font-size:12px;color:var(--accent);font-weight:800;min-width:58px;padding-top:3px;white-space:nowrap}
+  .day .act{font-size:15px}
+  .day .ok{font-size:12px;color:var(--sub);margin-top:2px}
+  /* footer */
+  footer{background:var(--paper);padding:28px 52px 36px;font-size:12px;color:var(--sub);line-height:1.8;margin-top:48px}
+  .tag{display:inline-block;font-size:12px;background:#f1ece3;color:#5c554b;border-radius:6px;padding:3px 9px;margin:0 6px 6px 0}
+  .chip{display:inline-block;font-size:13px;background:#f6f1e8;color:#4a443c;border:1px solid var(--line);border-radius:99px;padding:5px 12px;margin:0 6px 8px 0}
+  .chip b{color:var(--accent);font-weight:700}
+  /* personality */
+  .pers{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:0 0 22px}
+  .pers .ptype{font-size:34px;font-weight:800;letter-spacing:1px;color:var(--accent)}
+  .pers .ptype span{font-size:14px;font-weight:400;color:var(--sub);letter-spacing:0;margin-left:12px}
+  .pdims{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin:16px 0}
+  .pdim{font-size:13px;color:var(--sub)}
+  .pdim b{color:var(--ink);margin-left:6px}
+  .pbar{height:6px;background:#efe9df;border-radius:99px;margin-top:5px;overflow:hidden}
+  .pbar i{display:block;height:100%;background:var(--gold)}
+  .plines{margin:10px 0 8px 18px;font-size:14px}
+  .plines li{margin:3px 0}
+  .pwork{font-size:14px;color:#2b2723;margin:6px 0}
+  .pblind{font-size:13px;color:var(--sub);background:#faf4ee;border-radius:8px;padding:10px 12px;margin-top:10px}
+  /* cross + business */
+  .crossh{font-size:18px;font-weight:800;margin:26px 0 12px;padding-top:18px;border-top:1px dashed var(--line)}
+  .cross{margin:0 0 14px;padding-left:14px;border-left:3px solid var(--accent)}
+  .cross b{font-size:15px}
+  .cross p{font-size:14px;color:#3a332b;margin-top:2px}
+  .biz{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:12px 0;background:#fff}
+  .biz .bhead{display:flex;justify-content:space-between;align-items:baseline}
+  .biz b{font-size:17px}
+  .biz .fit{font-size:12px;color:var(--accent);font-weight:700}
+  .biz p{font-size:14px;margin:6px 0 10px}
+  .bizdl{display:grid;grid-template-columns:60px 1fr;gap:4px 10px;font-size:13px}
+  .bizdl dt{color:var(--sub)}
+  /* bazi + macro */
+  .bazi{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:#fff}
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0 18px;text-align:center}
+  .pillar{border:1px solid var(--line);border-radius:10px;padding:12px 4px}
+  .pillar .p1{font-size:20px;font-weight:800;letter-spacing:2px}
+  .pillar .p2{font-size:11px;color:var(--sub);margin-top:2px}
+  .wx{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:10px 0 14px}
+  .wxb{text-align:center;font-size:12px;color:var(--sub)}
+  .wxb .bar{height:8px;margin-top:4px}
+  .wxb b{display:block;color:var(--ink);font-size:13px}
+  .baziline{font-size:14px;margin:6px 0}
+  .baziline span{color:var(--sub)}
+  .macro{border-left:3px solid var(--accent2);padding-left:14px;margin:14px 0}
+  .macro b{font-size:15px}
+  .macro p{font-size:14px;color:#3a332b;margin-top:2px}
+  .macro .imp{font-size:12px;color:var(--accent);margin-top:4px}
+  /* 90 天提示词 */
+  .promptbox{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:14px 0 10px}
+  .phead{background:#f6efe4;font-size:12px;letter-spacing:.12em;color:#8a7868;padding:10px 16px}
+  .pbody{background:#fff;margin:0;padding:16px;font-size:12.5px;line-height:1.8;white-space:pre-wrap;
+         font-family:inherit;color:#2b2723}
+  .pbtn{display:block;width:100%;padding:14px;border:none;background:var(--accent);color:#fff;
+        font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
+  .persona{background:#f6f1e8;border-radius:10px;padding:12px 16px;font-size:14px;margin:0 0 16px}
+  .persona b{color:var(--accent)}
+  /* 喜欢 × 擅长 组合 */
+  .combo{border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0;background:#fff}
+  .combo .cw{font-size:12px;color:#8a7868;letter-spacing:.06em}
+  .combo .ch{font-size:12px;color:#8a7868;margin-top:2px}
+  .combo .cr{font-size:17px;font-weight:800;margin:8px 0 6px;line-height:1.5}
+  .combo .cf{font-size:13.5px;color:#5d5348}
+  .combo .cx{font-size:13px;color:#a05a3a;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">{{ meta.kicker }}</div>
+  <h1>{{ report.summary.headline }}</h1>
+  <div class="sub">{{ report.summary.one_liner }}</div>
+  <div class="meta">
+    <span>编号 {{ meta.id }}</span>
+    <span>{{ meta.date }}</span>
+    <span>用时 {{ meta.duration }} 分钟</span>
+  </div>
+</div>
+
+<section>
+  <div class="sec-no">{{ report.labels.s1 }}</div>
+  <p class="lead">{{ report.summary.body }}</p>
+</section>
+
+<section>
+  <div class="sec-no">{{ report.labels.s2_no }}</div>
+  <h2>{{ report.labels.s2_h2|safe }}</h2>
+  {% if report.personality %}
+  <div class="pers">
+    <div class="ptype">{{ report.personality.type }}<span>{{ report.personality.desc.headline }}</span></div>
+    <div class="pdims">
+      {% for d in report.personality.dims.values() %}
+      <div class="pdim">{{ d.name }}<b>{{ d.word }}</b>
+        <div class="pbar"><i style="width:{{ d.strength }}%"></i></div>
+      </div>
+      {% endfor %}
+    </div>
+    <ul class="plines">{% for l in report.personality.desc.lines %}<li>{{ l }}</li>{% endfor %}</ul>
+    <p class="pwork">{{ report.personality.desc.work|join('；') }}。</p>
+    <p class="pblind">{{ report.personality.desc.blind }}</p>
+  </div>
+  {% endif %}
+  {% if report.zodiac %}
+  <div class="pers" style="margin-top:-8px">
+    <div class="ptype" style="font-size:24px">{{ report.zodiac.name }}
+      <span>{{ report.zodiac.from[0] }}/{{ report.zodiac.from[1] }}–{{ report.zodiac.to[0] }}/{{ report.zodiac.to[1] }} · {{ report.zodiac.element }}象</span>
+    </div>
+    <p class="pwork" style="margin-top:8px">{{ report.zodiac.line }}</p>
+    <p class="pblind">星座是文化参考：它描述的是「别人眼中的你」，权重低于 MBTI 和才能分，只用来解释细节。</p>
+  </div>
+  {% endif %}
+  {% for t in report.talents %}
+  <div class="talent">
+    <div class="top">
+      <h3>{{ t.name }}
+        <span class="badge {{ 'b-high' if t.confidence=='high' else 'b-mid' }}">{{ '高置信' if t.confidence=='high' else '中等置信' }}</span>
+      </h3>
+      <div class="score">{{ t.score }} 分</div>
+    </div>
+    <p>{{ t.plain }}</p>
+    <div class="quote">{{ t.evidence }}</div>
+    <p>{{ t.use_best }}</p>
+    <div class="shadow"><b>用错了会怎样：</b>{{ t.shadow }}</div>
+  </div>
+  {% endfor %}
+  {% if report.cross %}
+  <h3 class="crossh">把性格、才能、行业放在一起看</h3>
+  {% for c in report.cross %}
+  <div class="cross"><b>{{ c.title }}</b><p>{{ c.body }}</p></div>
+  {% endfor %}
+  {% endif %}
+</section>
+
+{% if report.bazi %}
+<section>
+  <div class="sec-no">附 / 命理参考（文化）</div>
+  <h2>你出生的时间：<em>{{ report.bazi.bazi }}</em></h2>
+  <div class="bazi">
+    <div class="baziline"><span>公历</span> {{ report.bazi.solar }}　<span>农历</span> {{ report.bazi.lunar }}</div>
+    <div class="pillars">
+      {% for p in report.bazi.pillars %}
+      <div class="pillar"><div class="p1">{{ p }}</div>
+        <div class="p2">{{ ['年柱','月柱','日柱','时柱'][loop.index0] }}</div></div>
+      {% endfor %}
+    </div>
+    <div class="wx">
+      {% for k, v in report.bazi.wuxing_pct.items() %}
+      <div class="wxb"><b>{{ k }}</b>{{ v }}%
+        <div class="bar"><i style="width:{{ v }}%"></i></div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="baziline"><span>五行</span> 木 {{ report.bazi.wuxing['木'] }} · 火 {{ report.bazi.wuxing['火'] }} · 土 {{ report.bazi.wuxing['土'] }} · 金 {{ report.bazi.wuxing['金'] }} · 水 {{ report.bazi.wuxing['水'] }}</div>
+    <div class="baziline"><span>最旺</span> {{ report.bazi.strong }}（{{ report.bazi.strong_info.trait }}）　
+      <span>缺</span> {{ report.bazi.missing | join('、') if report.bazi.missing else '无' }}</div>
+    <div class="baziline"><span>称骨</span> {{ report.bazi.weight_text }}（{{ report.bazi.weight_band }}）—— {{ report.bazi.weight_note }}</div>
+    <div class="baziline" style="margin-top:10px"><span>五行对应的行业方向</span><br>{{ report.bazi.directions | join('；') }}</div>
+    <p class="pblind" style="margin-top:12px">命理是文化参考：它不参与岗位排序，也不构成任何预测。用它是为了多一个看自己的角度，不是为了让谁替你决定。</p>
+  </div>
+</section>
+{% endif %}
+
+<section>
+  <div class="sec-no">{{ report.labels.s3_no }}</div>
+  <h2>{{ report.labels.s3_h2|safe }}</h2>
+  <p>{{ report.compass.body }}</p>
+  {% for v in report.compass.rank %}
+  <div class="bar-row">
+    <div class="bar-label"><span>{{ v.name }}</span><span>{{ v.score }}</span></div>
+    <div class="bar {{ 'gold' if loop.first else '' }}"><i style="width:{{ v.score }}%"></i></div>
+  </div>
+  {% endfor %}
+</section>
+
+<section>
+  <div class="sec-no">{{ report.labels.s4_no }}</div>
+  <h2>{{ report.labels.s4_h2|safe }}</h2>
+  <p>{{ report.domains_note }}</p>
+  {% for d in report.domains %}
+  <div class="bar-row">
+    <div class="bar-label"><span>{{ d.name }}</span><span>{{ d.score }}</span></div>
+    <div class="bar"><i style="width:{{ d.score }}%"></i></div>
+  </div>
+  {% endfor %}
+  {% if report.fields %}
+  <div style="margin:18px 0 6px">
+    {% for f in report.fields %}<span class="chip">{{ f.name }} <b>{{ f.score }}</b></span>{% endfor %}
+  </div>
+  {% endif %}
+  <p class="muted" style="margin-top:10px">{{ report.domains_hint }}</p>
+</section>
+
+<section>
+  <div class="sec-no">04+ / 喜欢 × 擅长</div>
+  <h2>先把两列交叉起来，再用<em>工作目的</em>筛</h2>
+  <p class="muted" style="margin-bottom:14px">这一步不是选岗位，是造"想做的事"的原型：左边是你的领域（喜欢），右边是你的做事方式（擅长）。交叉出来的候选，再拿"你想带给别人什么"去筛。</p>
+  {% for c in report.combos %}
+  <div class="combo">
+    <div class="cw">在「{{ c.what }}」里</div>
+    <div class="ch">用「{{ c.how }}」的方式</div>
+    <div class="cr">{{ c.result }}</div>
+    {% if c.fit %}<div class="cf">为什么成立：{{ c.fit }}</div>{% endif %}
+    {% if c.keep is sameas false %}<div class="cx">被工作目的筛掉——它更多满足你自己，还没连到"想给别人什么"。</div>{% endif %}
+  </div>
+  {% endfor %}
+  {% if report.compass and report.compass.purpose %}
+  <p class="muted" style="margin-top:12px">筛选用的那把尺子：<b>{{ report.compass.purpose }}</b></p>
+  {% endif %}
+</section>
+
+<section>
+  <div class="sec-no">{{ report.labels.s5_no }}</div>
+  <h2>{{ report.labels.s5_h2|safe }}</h2>
+  {% if report.persona %}
+  <div class="persona"><b>你的处境：{{ report.persona.label }}</b>　{{ report.persona.advice }}</div>
+  {% endif %}
+  <p class="muted" style="margin-bottom:6px">下面是<b>实现手段</b>，不是"你应该做的职业"。每条都从上面的组合推出来，工不打工、创不创业，只是形态不同。</p>
+  {% for j in report.jobs %}
+  <div class="job">
+    <div class="head">
+      <h3>{{ loop.index }}. {{ j.title }}</h3>
+      <div class="match">{% if j.form %}{{ j.form }}{% elif j.match %}匹配 {{ j.match }}%{% endif %}</div>
+    </div>
+    <div class="ind">{% if j.from_combo %}来自组合：{{ j.from_combo }}{% else %}{{ j.industry }}{% endif %}{% if j.salary %}　·　{{ j.salary }}{% endif %}</div>
+    <dl>
+      <dt>日常</dt><dd>{{ j.a_day }}</dd>
+      <dt>为什么是你</dt><dd>{{ j.why_you }}</dd>
+      <dt>门槛</dt><dd>{{ j.entry }}</dd>
+      {% if j.tradeoff %}<dt>代价</dt><dd>{{ j.tradeoff }}</dd>{% endif %}
+      {% if j.first_step %}<dt>第一步</dt><dd>{{ j.first_step }}</dd>{% endif %}
+    </dl>
+    <div class="steps">
+      <p style="font-size:13px;color:#8a7868;margin:0">具体到每周做什么 → 用文末的「90 天提示词」让 AI 帮你排。</p>
+    </div>
+  </div>
+  {% endfor %}
+  {% if report.jobs_hint %}
+  <p class="muted" style="margin-top:16px;border-left:3px solid var(--gold);padding-left:14px">{{ report.jobs_hint }}</p>
+  {% endif %}
+  {% if report.business %}
+  <h3 class="crossh">{{ report.biz_title or '如果你更想自己做事' }}</h3>
+  {% if report.persona %}
+  <p class="muted" style="margin-bottom:10px">{{ report.persona.biz }}</p>
+  {% endif %}
+  <p class="muted" style="margin-bottom:10px">顺序是<b>先卖再做</b>：先用手工交付卖出去，收到钱再决定要不要做成产品。第一条优先"别人已经在问你的问题"。</p>
+  {% for b in report.business %}
+  <div class="biz">
+    <div class="bhead"><b>{{ b.name }}</b><span class="fit">{{ b.form or ('匹配 ' ~ b.fit) }}</span></div>
+    {% if b.from_combo %}<div class="bfrom">来自组合：{{ b.from_combo }}</div>{% endif %}
+    <p>{{ b.pitch }}</p>
+    <dl class="bizdl">
+      {% if b.who %}<dt>谁付钱</dt><dd>{{ b.who }}</dd>{% endif %}
+      {% if b.deliverable %}<dt>交付什么</dt><dd>{{ b.deliverable }}</dd>{% endif %}
+      {% if b.price %}<dt>首单定价</dt><dd>{{ b.price }}</dd>{% endif %}
+      {% if b.first_money %}<dt>前 3 个客户</dt><dd>{{ b.first_money }}</dd>{% endif %}
+      <dt>启动成本</dt><dd>{{ b.cost }}</dd>
+      {% if b.first %}<dt>第一步</dt><dd>{{ b.first }}</dd>{% endif %}
+      <dt>风险</dt><dd>{{ b.risk }}</dd>
+      {% if b.first_30_days %}<dt>30 天实验</dt><dd>{{ b.first_30_days }}</dd>{% endif %}
+    </dl>
+  </div>
+  {% endfor %}
+  {% endif %}
+</section>
+
+<section>
+  <div class="sec-no">{{ report.labels.s6_no }}</div>
+  <h2>{{ report.labels.s6_h2|safe }}</h2>
+  {% for p in report.pitfalls %}
+  <div class="pit"><div class="item">
+    <b>{{ p.trap }}</b>
+    <div class="sig">信号：{{ p.signal }}</div>
+    <div class="sig">怎么办：{{ p.fix }}</div>
+  </div></div>
+  {% endfor %}
+</section>
+
+<section style="padding-bottom:20px">
+  <div class="sec-no">{{ report.labels.s7_no }}</div>
+  <h2>{{ report.labels.s7_h2|safe }}</h2>
+  <p class="muted" style="margin-bottom:14px">知道方向，不等于知道怎么做。下面这段提示词，复制给你常用的 AI（DeepSeek / 豆包 / ChatGPT），它会帮你排到「每周做什么、做到什么算完成」。</p>
+
+  <div class="promptbox">
+    <div class="phead">提示词 · 复制后直接发给 AI</div>
+    <pre class="pbody" id="promptText">我在做职业方向的落地计划，方向已经定了：{{ report.jobs[0].title }}（{{ report.jobs[0].industry }}）。
+我的情况：
+- 每周能投入 3–5 小时，周期 90 天，暂时不打算辞职
+- 我最擅长的三件事是：{% for t in report.talents %}{{ t.name }}（{{ (t.evidence or '')[:40] }}）{% if not loop.last %}；{% endif %}{% endfor %}
+- 我的价值观第一位是：自由（不想被管、想自己决定怎么做）
+
+请你扮演一个严格的职业教练，帮我把这 90 天拆成能直接执行的任务清单。
+**注意：所有任务都必须尽量用到我上面这三件擅长的事；如果某个任务用不上，请明确告诉我原因。**
+
+第一步，先问我 3 个问题，等我回答后再开始：
+1. 我手上已经有哪些能用的资源（人、作品、渠道）？
+2. 我能接触到、愿意帮我的人是谁？
+3. 我最怕发生什么？
+
+第二步，给我一张 12 周的表，每周包含：
+- 本周唯一目标
+- 2–3 个具体动作（精确到「给谁发什么消息」「打开哪个软件做什么」）
+- 每个动作的交付物（能截图、能发出去、能给人看的东西）
+- 预计耗时
+- 怎么判断这周做完了
+
+第三步，每周给一个「最低完成线」：这周再忙，也必须做到的那一件事。
+
+第四步，在第 4、8、12 周各设一个检查点，告诉我：
+- 什么信号代表「继续加码」
+- 什么信号代表「换一条路」
+
+第五步，最后单独列两份清单：
+- 这 90 天需要花钱的地方（金额、值不值）
+- 需要找人帮忙的地方（找谁、怎么开口）
+
+要求：
+- 不要泛泛而谈，每条都要能当天动手
+- 不要鼓励我辞职
+- 不确定的地方，直接说「需要你补充」，不要编</pre>
+    <button class="pbtn" onclick="copyPrompt()">复制这段提示词</button>
+  </div>
+
+  <p class="muted" style="margin-top:8px">复制不了？<b>把这张长图直接发给 AI 也行</b>——它照样能看懂，然后按上面的要求帮你排任务。</p>
+  <p class="muted">粘贴后如果 AI 反问你信息，照实回答；先让它问，别急着要方案。</p>
+</section>
+
+{% if report.macro %}
+<section style="padding-bottom:30px">
+  <div class="sec-no">08 / 宏观环境</div>
+  <h2>你选的方向，正在<em>往哪走</em></h2>
+  {% for m in report.macro %}
+  <div class="macro">
+    <b>{{ m.title }}</b>
+    <p>{{ m.body }}</p>
+    <div class="imp">{{ m.impact }}</div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+<footer>
+  <div style="margin-bottom:10px">
+    {% for t in report.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+  </div>
+  本报告基于你的自评回答生成，用于自我探索与职业方向参考，不构成心理诊断或就业承诺。<br>
+  报告中的岗位与薪资为区间参考，实际以所在城市与行业为准。<br>
+  编号 {{ meta.id }}　·　生成于 {{ meta.date }}　·　{{ meta.brand }}
+</footer>
+
+<script>
+function copyPrompt(){
+  var el = document.getElementById('promptText');
+  var txt = el ? el.innerText : '';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(function(){
+      var b = document.querySelector('.pbtn'); if(b){ b.textContent = '已复制，去粘贴给 AI'; }
+    });
+  } else {
+    var r = document.createRange(); r.selectNodeContents(el);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    document.execCommand('copy');
+    var b = document.querySelector('.pbtn'); if(b){ b.textContent = '已复制，去粘贴给 AI'; }
+  }
+}
+</script>
+</body>
+</html>

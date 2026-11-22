@@ -1,0 +1,21 @@
+# 运行产物（不要提交）
+out/
+inbox/*.json
+!inbox/demo.json
+logs/
+data/records/
+
+# 本地浏览器 profile（含登录态）
+.edge_profile/
+bin/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini

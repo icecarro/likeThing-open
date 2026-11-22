@@ -1,0 +1,9 @@
+jinja2>=3.1
+lunardate>=0.2
+pandas>=2.0
+Pillow>=10.0
+qrcode[pil]>=7.4
+requests>=2.31
+
+# 可选：仅用于抓取创作者后台数据（不用于发布）
+playwright>=1.40

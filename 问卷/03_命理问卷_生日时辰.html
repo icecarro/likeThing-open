@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>你的使用说明书</title>
+<style>
+  :root{--ink:#1c1a17;--sub:#6b655c;--line:#e8e0d4;--paper:#fbf8f2;--accent:#b8552f;--ok:#2f5d50}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:#efece6;color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.7}
+  .phone{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;display:flex;flex-direction:column}
+  header{padding:18px 22px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:5}
+  .bar{height:4px;background:#f0e9de;border-radius:99px;overflow:hidden;margin-top:10px}
+  .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+  .hint{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-top:6px}
+  main{flex:1;padding:26px 22px 120px}
+  .qno{font-size:12px;letter-spacing:.2em;color:var(--accent);margin-bottom:10px}
+  .stem{font-size:20px;font-weight:700;line-height:1.55;margin-bottom:6px}
+  .sub{font-size:13px;color:var(--sub);margin-bottom:20px}
+  .opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;
+       padding:14px 16px;margin-bottom:10px;font-size:15px;color:var(--ink);cursor:pointer;transition:.15s;font-family:inherit}
+  .opt:hover{border-color:#c9bda9}
+  .opt.sel{border-color:var(--accent);background:#fdf6f1;box-shadow:0 0 0 1px var(--accent) inset}
+  .opt .k{display:inline-block;width:22px;color:var(--accent);font-weight:700}
+  .likert{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .likert button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:14px 4px;font-size:13px;
+       color:var(--sub);cursor:pointer;font-family:inherit}
+  .likert button.sel{border-color:var(--accent);background:#fdf6f1;color:var(--accent);font-weight:700}
+  .rank .item{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;cursor:pointer}
+  .rank .item .num{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--sub)}
+  .rank .item.sel{border-color:var(--accent);background:#fdf6f1}
+  .rank .item.sel .num{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .multi .opt.sel .k{color:var(--ok)}
+  .ghead{font-size:12px;color:var(--sub);margin:16px 0 8px;letter-spacing:.08em}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip2{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;font-size:13px;color:var(--ink);cursor:pointer;font-family:inherit}
+  .chip2.sel{border-color:var(--accent);background:#fdf6f1;color:var(--accent)}
+  textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:15px;
+       font-family:inherit;resize:vertical;line-height:1.6}
+  .count{text-align:right;font-size:12px;color:var(--sub);margin-top:6px}
+  footer{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 22px;
+       display:flex;gap:10px;max-width:480px;margin:0 auto}
+  footer button{flex:1;border-radius:12px;padding:14px;font-size:16px;font-family:inherit;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink)}
+  footer button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+  footer button:disabled{opacity:.4;cursor:not-allowed}
+  .cover{padding:60px 26px;text-align:center}
+  .cover .k{font-size:12px;letter-spacing:.28em;color:var(--accent);margin-bottom:20px}
+  .cover h1{font-size:32px;line-height:1.35;margin-bottom:14px;letter-spacing:-.5px}
+  .cover p{color:var(--sub);font-size:15px;margin-bottom:8px}
+  .cover .meta{font-size:12px;color:var(--sub);margin:26px 0}
+  .cover button{width:100%;margin-top:14px}
+  .ghost{background:#fff;color:var(--sub);border:1px dashed var(--line)}
+  pre{background:#f7f4ee;border-radius:12px;padding:14px;font-size:11px;line-height:1.5;overflow:auto;max-height:300px;
+      white-space:pre-wrap;word-break:break-all;font-family:Consolas,monospace}
+  .done h2{font-size:24px;margin-bottom:8px}
+  .done p{color:var(--sub);font-size:14px;margin-bottom:14px}
+  .done .row{display:flex;gap:10px;margin:14px 0}
+  .done .row button{flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);background:#fff;font-family:inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="phone">
+  <header id="hdr" style="display:none">
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--sub)">
+      <span>你的使用说明书</span><span id="pos">1 / 45</span>
+    </div>
+    <div class="bar"><i id="prog"></i></div>
+    <div class="hint"><span id="mod">才能</span><span id="tip">约 9 分钟</span></div>
+  </header>
+
+  <main id="main"></main>
+  <footer id="ftr" style="display:none">
+    <button id="prev">上一题</button>
+    <button id="next" class="primary">下一题</button>
+  </footer>
+</div>
+
+<script>
+const DATA = {"questions": [{"id": "P4", "module": "profile", "type": "date", "stem": "你的出生年月日？（用来排星座，只做参考）"}, {"id": "P5", "module": "profile", "type": "choice", "stem": "你出生在哪个时辰？（不知道就选最接近的）", "options": [{"key": "A", "text": "子时（23–1 点）"}, {"key": "B", "text": "丑时（1–3 点）"}, {"key": "C", "text": "寅时（3–5 点）"}, {"key": "D", "text": "卯时（5–7 点）"}, {"key": "E", "text": "辰时（7–9 点）"}, {"key": "F", "text": "巳时（9–11 点）"}, {"key": "G", "text": "午时（11–13 点）"}, {"key": "H", "text": "未时（13–15 点）"}, {"key": "I", "text": "申时（15–17 点）"}, {"key": "J", "text": "酉时（17–19 点）"}, {"key": "K", "text": "戌时（19–21 点）"}, {"key": "L", "text": "亥时（21–23 点）"}]}], "meta": {"kicker": "DESTINY · 命理参考", "title": "你的出生时间", "line1": "2 道题，30 秒。", "line2": "用来排八字、五行和称骨，作为报告最后一节的参考。", "note": "只是文化参考，不参与岗位排序。"}};
+const META = DATA.meta || {};
+if (META.title) document.title = META.title + ' · ' + ((DATA.questions || []).length) + ' 题';
+const LIKERT = ["从不","很少","有时","经常","总是"];
+const LIMIT = {multi:3};
+const state = { idx:-1, answers:{} };
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function save(){ try{ localStorage.setItem('lt_answers', JSON.stringify(state.answers)); }catch(e){} }
+function load(){ try{ const s = localStorage.getItem('lt_answers'); if(s) state.answers = JSON.parse(s); }catch(e){} }
+
+function start(){
+  load();
+  state.idx = 0;
+  $('#hdr').style.display = 'block';
+  $('#ftr').style.display = 'flex';
+  render();
+}
+
+function render(){
+  const q = DATA.questions[state.idx];
+  if(!q){ return done(); }
+  const n = DATA.questions.length;
+  $('#pos').textContent = (state.idx+1) + ' / ' + n;
+  $('#prog').style.width = ((state.idx+1)/n*100) + '%';
+  $('#mod').textContent = ({talent:'才能', value:'价值观', passion:'热情', open:'开放题', check:'校验', profile:'背景', personality:'性格'})[q.module] || q.module;
+  $('#tip').textContent = q.type === 'likert' ? '凭第一反应，不要想太久' : (q.type==='open' ? '越具体越好，可跳过' : '选最像你的');
+
+  let h = `<div class="qno">Q${state.idx+1}</div><div class="stem">${esc(q.stem)}</div>`;
+  const opts = q.dynamic ? dynOptions(q) : (q.options || []);
+
+  if(q.type === 'choice' || q.type === 'check_likert'){
+    if(q.type === 'choice'){
+      h += '<div class="sub">单选</div>';
+      opts.forEach(o=>{
+        const sel = state.answers[q.id] === o.key ? ' sel' : '';
+        h += `<button class="opt${sel}" data-k="${esc(o.key)}"><span class="k">${esc(o.key)}</span>${esc(o.text)}</button>`;
+      });
+    }else{
+      h += '<div class="sub">1 = 完全不符合，5 = 完全符合</div><div class="likert">';
+      LIKERT.forEach((t,i)=>{ const v=i+1; const sel = Number(state.answers[q.id])===v?' sel':'';
+        h += `<button data-v="${v}" class="${sel}">${v}<br>${t}</button>`; });
+      h += '</div>';
+    }
+  }
+  else if(q.type === 'likert'){
+    h += '<div class="sub">1 = 从不，5 = 总是</div><div class="likert">';
+    LIKERT.forEach((t,i)=>{ const v=i+1; const sel = Number(state.answers[q.id])===v?' sel':'';
+      h += `<button data-v="${v}" class="${sel}">${v}<br>${t}</button>`; });
+    h += '</div>';
+  }
+  else if(q.type === 'ranking'){
+    h += '<div class="sub">按顺序点选，第一下 = 最重要</div><div class="rank">';
+    const order = state.answers[q.id] || [];
+    q.items.forEach(it=>{
+      const pos = order.indexOf(it.key);
+      h += `<div class="item${pos>=0?' sel':''}" data-k="${esc(it.key)}"><span class="num">${pos>=0?pos+1:''}</span>${esc(it.text)}</div>`;
+    });
+    h += `</div><button class="opt ghost" id="resetRank" style="margin-top:4px;width:auto;padding:8px 16px;display:inline-block;font-size:13px">重排</button>`;
+  }
+  else if(q.type === 'multi'){
+    const chosen = state.answers[q.id] || [];
+    h += `<div class="sub">已选 ${chosen.length} / ${q.max_pick||3}</div>`;
+    if(q.grouped){
+      (DATA.groups||[]).forEach(g=>{
+        const items = opts.filter(o=>o.group===g.id);
+        if(!items.length) return;
+        h += `<div class="ghead">${esc(g.name)}</div><div class="chips">`;
+        items.forEach(o=>{
+          const on = chosen.includes(o.key);
+          h += `<button class="chip2${on?' sel':''}" data-k="${esc(o.key)}">${on?'✓ ':''}${esc(o.text)}</button>`;
+        });
+        h += '</div>';
+      });
+    }else{
+      h += '<div class="multi">';
+      opts.forEach(o=>{
+        const sel = chosen.includes(o.key) ? ' sel' : '';
+        h += `<button class="opt${sel}" data-k="${esc(o.key)}"><span class="k">${chosen.includes(o.key)?'✓':'○'}</span>${esc(o.text)}</button>`;
+      });
+      h += '</div>';
+    }
+  }
+  else if(q.type === 'date'){
+    const val = state.answers[q.id] || '';
+    h += `<input type="date" id="dateIn" value="${esc(val)}"
+            style="width:100%;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:16px;font-family:inherit">
+          <div class="sub" style="margin-top:10px">只用来排星座，不做别的事</div>`;
+  }
+  else if(q.type === 'open'){
+    const val = state.answers[q.id] || '';
+    h += `<textarea maxlength="${q.max_chars||200}" placeholder="写具体一点，报告会引用你自己的话">${esc(val)}</textarea>
+          <div class="count"><span id="cc">${val.length}</span> / ${q.max_chars||200}</div>`;
+  }
+
+  $('#main').innerHTML = h;
+  $('#prev').disabled = state.idx === 0;
+  $('#next').textContent = state.idx === DATA.questions.length-1 ? '提交' : '下一题';
+
+  bind(q);
+}
+
+function dynOptions(q){
+  const F = DATA.fields || [];
+  const pick = (ids) => F.filter(f => ids.includes(f.id));
+  const fmt = list => list.map(f => ({key: f.id, text: f.name, group: f.group}));
+  if(q.dynamic === 'all_fields') return fmt(F);
+  if(q.dynamic === 'picked20')  return fmt(pick(state.answers['Q31'] || []));
+  if(q.dynamic === 'picked10')  return fmt(pick(state.answers['Q32'] || []));
+  if(q.dynamic === 'picked5')   return fmt(pick(state.answers['Q33'] || []));
+  if(q.dynamic === 'subs' || q.dynamic === 'subs2'){
+    const ids = state.answers['Q34'] || [];
+    const idx = q.dynamic === 'subs2' ? 1 : 0;
+    const f = F.find(x => x.id === ids[idx]);
+    const subs = (f && f.subs) || [];
+    return subs.map((s, i) => ({key: String(i), text: s}));
+  }
+  return q.options || [];
+}
+
+function bind(q){  if(q.type === 'choice'){
+    $('#main').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      state.answers[q.id] = b.dataset.k; save(); render();
+    });
+  }
+  if(q.type === 'likert' || q.type === 'check_likert'){
+    $('#main').querySelectorAll('.likert button').forEach(b=>b.onclick=()=>{
+      state.answers[q.id] = Number(b.dataset.v); save(); render();
+    });
+  }
+  if(q.type === 'ranking'){
+    $('#main').querySelectorAll('.rank .item').forEach(el=>el.onclick=()=>{
+      let order = state.answers[q.id] || [];
+      const k = el.dataset.k;
+      if(order.includes(k)) order = order.filter(x=>x!==k);
+      else order = [...order, k];
+      state.answers[q.id] = order; save(); render();
+    });
+    const r = $('#resetRank'); if(r) r.onclick=()=>{ state.answers[q.id]=[]; save(); render(); };
+  }
+  if(q.type === 'multi'){
+    $('#main').querySelectorAll('.opt, .chip2').forEach(b=>b.onclick=()=>{
+      let arr = state.answers[q.id] || [];
+      const k = b.dataset.k;
+      if(arr.includes(k)) arr = arr.filter(x=>x!==k);
+      else { if(arr.length >= (q.max_pick||3)) return; arr = [...arr, k]; }
+      state.answers[q.id] = arr; save(); render();
+    });
+  }
+  if(q.type === 'open'){
+    const ta = $('#main').querySelector('textarea');
+    ta.oninput = ()=>{ state.answers[q.id] = ta.value; $('#cc').textContent = ta.value.length; save(); };
+  }
+  if(q.type === 'date'){
+    const el = $('#dateIn');
+    el.onchange = ()=>{ state.answers[q.id] = el.value; save(); };
+  }
+}
+
+function done(){
+  $('#hdr').style.display='none'; $('#ftr').style.display='none';
+  const answered = Object.keys(state.answers).length;
+  const json = JSON.stringify(state.answers, null, 2);
+  $('#main').innerHTML = `<div class="done">
+    <h2>答完了</h2>
+    <p>共 45 题，已记录 ${answered} 题。下面是你的答案 JSON——把它交给生成脚本，就能出报告。</p>
+    <div class="row"><button id="dl">下载 answers.json</button><button id="cp">复制</button></div>
+    <pre id="out">${esc(json)}</pre>
+    <div class="row"><button id="again">重新开始</button></div>
+    <p style="margin-top:18px">生成命令：<br><code>python scripts/generate.py --answers answers.json --id A001</code></p>
+  </div>`;
+  $('#dl').onclick = ()=>{
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([json], {type:'application/json'}));
+    a.download = 'answers.json'; a.click();
+  };
+  $('#cp').onclick = ()=>{ navigator.clipboard.writeText(json); $('#cp').textContent='已复制'; };
+  $('#again').onclick = ()=>{ state.answers={}; state.idx=0; save(); $('#hdr').style.display='block'; $('#ftr').style.display='flex'; render(); };
+}
+
+function cover(){
+  const M = DATA.meta || {};
+  $('#hdr').style.display='none'; $('#ftr').style.display='none';
+  $('#main').innerHTML = `<div class="cover">
+    <div class="k">${esc(M.kicker || 'YOUR USER MANUAL')}</div>
+    <h1>${esc(M.title || '你的使用说明书')}</h1>
+    <p>${esc(M.line1 || '45 道题，约 9 分钟。')}</p>
+    <p>${esc(M.line2 || '最后会得到：3 个你天生擅长的事、5 个具体岗位方向、一个 7 天验证。')}</p>
+    <div class="meta">${esc(M.note || '这不是心理测试，不出诊断，不承诺结果。')}</div>
+    <button class="opt" id="go" style="text-align:center;border-color:var(--accent);background:var(--accent);color:#fff;font-weight:700">开始</button>
+    <button class="opt ghost" id="demo" style="text-align:center">用样例答案直接看结果</button>
+  </div>`;
+  $('#go').onclick = start;
+  $('#demo').onclick = ()=>{ state.answers = DEMO; state.idx = DATA.questions.length; done(); };
+}
+
+const DEMO = {
+  "Q1":"B","Q2":"A","Q3":"D","Q4":"A","Q5":"B","Q6":"D",
+  "Q7":5,"Q8":4,"Q9":3,"Q10":4,"Q11":3,"Q12":2,"Q13":5,"Q14":4,"Q15":3,"Q16":3,"Q17":2,"Q18":4,
+  "Q19":"A","Q20":"A","Q21":"A","Q22":"A",
+  "Q23":["1","2","3","4"],"Q24":["1","2","3","4"],"Q25":["1","2","3","4"],"Q26":["1","2","3","4"],
+  "Q27":["1","2","3"],"Q28":[],"Q29":[],"Q30":["1"],
+  "Q31":3,"Q32":4,"Q33":5,"Q34":1,"Q35":2,"Q36":2,"Q37":1,"Q38":1,"Q39":3,
+  "Q40":"给一个乱成一团的运营数据，两天内理成能看懂的看板，做完很爽。",
+  "Q41":"朋友都说找我看简历、帮我梳理职业方向。",
+  "Q42":"做一个帮人看清自己的产品。",
+  "C1":"B","C2":2,"C3":4
+};
+
+$('#prev').onclick = ()=>{ if(state.idx>0){ state.idx--; render(); } };
+$('#next').onclick = ()=>{ state.idx++; render(); };
+
+const _p = new URLSearchParams(location.search);
+if(_p.has('q')){
+  load();
+  state.idx = Math.max(0, Math.min(DATA.questions.length-1, parseInt(_p.get('q'),10)-1 || 0));
+  $('#hdr').style.display='block'; $('#ftr').style.display='flex';
+  render();
+}else{
+  cover();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1100 @@
+{
+  "version": "v1.0",
+  "updated": "2026-10-28",
+  "note": "示例职业库 24 条，阶段 1 扩到 300+。clusters 为才能匹配权重（0-1），domains 为领域归属。",
+  "jobs": [
+    {
+      "id": "j01",
+      "title": "数据分析师",
+      "industry": "互联网 / 零售 / 金融",
+      "clusters": {
+        "thinking": 1.0,
+        "executing": 0.7,
+        "stabilizing": 0.4
+      },
+      "domains": [
+        "tech",
+        "business"
+      ],
+      "a_day": "上午对业务方的问题拆指标，下午写 SQL 跑数、做看板，晚上跟老板解释为什么这个数掉了。",
+      "entry": "会 SQL + 一个 BI 工具（Tableau/PowerBI），能讲清一次完整的分析过程。",
+      "salary": "12–25K/月（一线，1–3 年）",
+      "path90": [
+        "第 1–2 周：把 SQL 基础过完，能独立写多表关联",
+        "第 3–4 周：找一个公开数据集，做一份完整分析报告",
+        "第 5–8 周：把报告改成作品集，投 20 家中小公司的数据岗",
+        "第 9–12 周：面试复盘，补业务指标知识（GMV、留存、转化）"
+      ],
+      "fields": [
+        "f_data"
+      ]
+    },
+    {
+      "id": "j02",
+      "title": "产品经理",
+      "industry": "互联网 / SaaS",
+      "clusters": {
+        "thinking": 0.9,
+        "connecting": 0.7,
+        "executing": 0.6
+      },
+      "domains": [
+        "tech",
+        "business"
+      ],
+      "a_day": "开三个会，跟研发吵一次需求优先级，写半页 PRD，晚上回用户反馈。",
+      "entry": "能独立写一份 PRD，讲清一个功能的用户、场景、价值。",
+      "salary": "15–30K/月（一线，1–3 年）",
+      "path90": [
+        "第 1–2 周：拆解 3 个你常用产品的功能逻辑",
+        "第 3–4 周：写一份完整 PRD（含原型）",
+        "第 5–8 周：投产品助理/初级产品岗，或用内部转岗",
+        "第 9–12 周：面试时带上作品，练「为什么这么设计」"
+      ],
+      "fields": [
+        "f_software"
+      ]
+    },
+    {
+      "id": "j03",
+      "title": "管理咨询顾问",
+      "industry": "咨询 / 企业服务",
+      "clusters": {
+        "thinking": 1.0,
+        "connecting": 0.6,
+        "executing": 0.7
+      },
+      "domains": [
+        "business",
+        "society"
+      ],
+      "a_day": "访谈客户、画 PPT、被合伙人改到第 8 版。",
+      "entry": "名校/大厂背景加分，核心是结构化表达和抗压。",
+      "salary": "15–35K/月（一线）",
+      "path90": [
+        "第 1–2 周：练 case interview 框架",
+        "第 3–4 周：做 3 个行业的桌面研究",
+        "第 5–8 周：投 Tier2 咨询或企业战略岗",
+        "第 9–12 周：模拟面试 10 次"
+      ],
+      "fields": [
+        "f_consult"
+      ]
+    },
+    {
+      "id": "j04",
+      "title": "财务分析（FP&A）",
+      "industry": "制造 / 消费 / 互联网",
+      "clusters": {
+        "thinking": 0.8,
+        "stabilizing": 0.8,
+        "executing": 0.7
+      },
+      "domains": [
+        "business"
+      ],
+      "a_day": "做预算模型、跟业务对账、解释差异。",
+      "entry": "财务基础 + Excel 建模，CPA 部分科目加分。",
+      "salary": "10–20K/月",
+      "path90": [
+        "第 1–2 周：搭一个三表模型",
+        "第 3–4 周：学预算编制逻辑",
+        "第 5–8 周：投 FP&A 岗",
+        "第 9–12 周：准备「差异分析」案例"
+      ],
+      "fields": [
+        "f_finance"
+      ]
+    },
+    {
+      "id": "j05",
+      "title": "内容策划 / 编导",
+      "industry": "MCN / 品牌 / 媒体",
+      "clusters": {
+        "creating": 1.0,
+        "connecting": 0.6,
+        "executing": 0.5
+      },
+      "domains": [
+        "content",
+        "art"
+      ],
+      "a_day": "上午选题会，下午写脚本，晚上盯剪辑。",
+      "entry": "有作品（账号/脚本/片子），比学历重要。",
+      "salary": "8–20K/月 + 项目奖",
+      "path90": [
+        "第 1–2 周：拆 20 条爆款的结构",
+        "第 3–4 周：自己做 3 条完整内容",
+        "第 5–8 周：投 MCN 或品牌内容岗",
+        "第 9–12 周：用数据说明哪条为什么好"
+      ],
+      "fields": [
+        "f_video"
+      ]
+    },
+    {
+      "id": "j06",
+      "title": "品牌设计师",
+      "industry": "广告 / 消费品牌",
+      "clusters": {
+        "creating": 1.0,
+        "stabilizing": 0.5
+      },
+      "domains": [
+        "art",
+        "content"
+      ],
+      "a_day": "改 logo、做 KV、被客户说「再大气一点」。",
+      "entry": "作品集，软件熟练度是底线不是优势。",
+      "salary": "8–18K/月",
+      "path90": [
+        "第 1–2 周：整理 5 个作品成集",
+        "第 3–4 周：补一个商业项目",
+        "第 5–8 周：投设计工作室/品牌方",
+        "第 9–12 周：练提案表达"
+      ],
+      "fields": [
+        "f_graphic"
+      ]
+    },
+    {
+      "id": "j07",
+      "title": "短视频编导",
+      "industry": "MCN / 电商",
+      "clusters": {
+        "creating": 0.9,
+        "executing": 0.7,
+        "connecting": 0.5
+      },
+      "domains": [
+        "content"
+      ],
+      "a_day": "一天拍 3 条，写 5 个脚本，盯数据。",
+      "entry": "能独立完成从脚本到成片。",
+      "salary": "8–18K/月",
+      "path90": [
+        "第 1–2 周：学剪映 + 分镜",
+        "第 3–4 周：自己做 3 条",
+        "第 5–8 周：投 MCN",
+        "第 9–12 周：拿播放数据说话"
+      ],
+      "fields": [
+        "f_video"
+      ]
+    },
+    {
+      "id": "j08",
+      "title": "独立开发者 / 小工具产品",
+      "industry": "软件",
+      "clusters": {
+        "creating": 0.8,
+        "exploring": 0.9,
+        "thinking": 0.7
+      },
+      "domains": [
+        "tech",
+        "business"
+      ],
+      "a_day": "写代码、看用户反馈、想下一个功能。",
+      "entry": "能独立做完一个能上线的产品。",
+      "salary": "不稳定，0–5 万/月",
+      "path90": [
+        "第 1–2 周：选一个极小需求",
+        "第 3–4 周：做出能用的版本",
+        "第 5–8 周：发到 3 个社区拿 20 个用户",
+        "第 9–12 周：看留存再决定加不加大"
+      ],
+      "fields": [
+        "f_software",
+        "f_ai"
+      ]
+    },
+    {
+      "id": "j09",
+      "title": "企业培训师",
+      "industry": "企业服务 / 教育",
+      "clusters": {
+        "connecting": 1.0,
+        "thinking": 0.6,
+        "executing": 0.6
+      },
+      "domains": [
+        "education",
+        "business"
+      ],
+      "a_day": "备课、讲课、答疑、被学员加微信。",
+      "entry": "有一个能讲 2 小时的主题 + 台风。",
+      "salary": "10–25K/月 或 按天计",
+      "path90": [
+        "第 1–2 周：定一个主题",
+        "第 3–4 周：做一版课件",
+        "第 5–8 周：在社群/公司内部试讲 3 次",
+        "第 9–12 周：录成作品，接企业单"
+      ],
+      "fields": [
+        "f_train"
+      ]
+    },
+    {
+      "id": "j10",
+      "title": "用户运营",
+      "industry": "互联网 / 消费",
+      "clusters": {
+        "connecting": 0.9,
+        "executing": 0.7,
+        "thinking": 0.5
+      },
+      "domains": [
+        "business",
+        "content"
+      ],
+      "a_day": "看社群、做活动、回用户消息、盯留存。",
+      "entry": "能独立策划并落地一次活动。",
+      "salary": "8–18K/月",
+      "path90": [
+        "第 1–2 周：拆 3 个社群玩法",
+        "第 3–4 周：自己做一次小活动",
+        "第 5–8 周：投运营岗",
+        "第 9–12 周：用数据讲清活动效果"
+      ],
+      "fields": [
+        "f_mkt"
+      ]
+    },
+    {
+      "id": "j11",
+      "title": "招聘顾问 / HRBP",
+      "industry": "企业服务 / 互联网",
+      "clusters": {
+        "connecting": 0.9,
+        "thinking": 0.6,
+        "stabilizing": 0.5
+      },
+      "domains": [
+        "business",
+        "society"
+      ],
+      "a_day": "看简历、打电话、跟业务对需求。",
+      "entry": "沟通判断力 + 行业理解。",
+      "salary": "8–20K/月",
+      "path90": [
+        "第 1–2 周：学岗位画像怎么写",
+        "第 3–4 周：跟 10 个候选人聊",
+        "第 5–8 周：投猎头/HR 岗",
+        "第 9–12 周：积累行业人脉"
+      ],
+      "fields": [
+        "f_career"
+      ]
+    },
+    {
+      "id": "j12",
+      "title": "项目经理（PMP 方向）",
+      "industry": "IT / 制造 / 建筑",
+      "clusters": {
+        "executing": 1.0,
+        "stabilizing": 0.7,
+        "connecting": 0.5
+      },
+      "domains": [
+        "business",
+        "tech"
+      ],
+      "a_day": "排期、催进度、开会、救火。",
+      "entry": "能同时盯住 3 条线不出错。",
+      "salary": "12–25K/月",
+      "path90": [
+        "第 1–2 周：学一遍 PMBOK 框架",
+        "第 3–4 周：把手上项目做成甘特图",
+        "第 5–8 周：投项目助理/PM 岗",
+        "第 9–12 周：考 PMP 或软考"
+      ],
+      "fields": [
+        "f_operate"
+      ]
+    },
+    {
+      "id": "j13",
+      "title": "供应链 / 采购",
+      "industry": "制造 / 零售",
+      "clusters": {
+        "executing": 0.9,
+        "stabilizing": 0.9
+      },
+      "domains": [
+        "business",
+        "nature"
+      ],
+      "a_day": "比价、催货、处理异常。",
+      "entry": "细致、抗压、会谈判。",
+      "salary": "8–18K/月",
+      "path90": [
+        "第 1–2 周：学采购流程",
+        "第 3–4 周：跟一轮完整下单",
+        "第 5–8 周：投采购岗",
+        "第 9–12 周：积累供应商资源"
+      ],
+      "fields": [
+        "f_logistics"
+      ]
+    },
+    {
+      "id": "j14",
+      "title": "审计 / 风控",
+      "industry": "会计事务所 / 金融",
+      "clusters": {
+        "stabilizing": 1.0,
+        "thinking": 0.8,
+        "executing": 0.7
+      },
+      "domains": [
+        "business"
+      ],
+      "a_day": "翻凭证、做底稿、写报告。",
+      "entry": "CPA 或相关证书，能吃苦。",
+      "salary": "8–20K/月",
+      "path90": [
+        "第 1–2 周：学审计流程",
+        "第 3–4 周：做一份模拟底稿",
+        "第 5–8 周：投事务所",
+        "第 9–12 周：备考 CPA"
+      ],
+      "fields": [
+        "f_finance"
+      ]
+    },
+    {
+      "id": "j15",
+      "title": "用户研究员",
+      "industry": "互联网 / 消费品",
+      "clusters": {
+        "exploring": 0.9,
+        "thinking": 0.9,
+        "connecting": 0.7
+      },
+      "domains": [
+        "tech",
+        "business",
+        "society"
+      ],
+      "a_day": "约用户访谈、整理录音、写洞察报告。",
+      "entry": "会做访谈、会写洞察。",
+      "salary": "12–25K/月",
+      "path90": [
+        "第 1–2 周：学访谈提纲怎么写",
+        "第 3–4 周：访谈 5 个人",
+        "第 5–8 周：写一份洞察报告",
+        "第 9–12 周：投用研岗"
+      ],
+      "fields": [
+        "f_data",
+        "f_psych"
+      ]
+    },
+    {
+      "id": "j16",
+      "title": "战略分析 / 商业分析",
+      "industry": "互联网 / 消费",
+      "clusters": {
+        "thinking": 1.0,
+        "exploring": 0.8
+      },
+      "domains": [
+        "business",
+        "tech"
+      ],
+      "a_day": "看行业、算市场、给老板写判断。",
+      "entry": "结构化研究能力 + 商业常识。",
+      "salary": "15–35K/月",
+      "path90": [
+        "第 1–2 周：选一个行业做 30 页研究",
+        "第 3–4 周：练市场规模测算",
+        "第 5–8 周：投战投/商分岗",
+        "第 9–12 周：准备 case"
+      ],
+      "fields": [
+        "f_econ",
+        "f_data",
+        "f_finance"
+      ]
+    },
+    {
+      "id": "j17",
+      "title": "记者 / 编辑",
+      "industry": "媒体 / 内容平台",
+      "clusters": {
+        "thinking": 0.8,
+        "connecting": 0.7,
+        "creating": 0.8
+      },
+      "domains": [
+        "content",
+        "society"
+      ],
+      "a_day": "找选题、采访、写稿、被改。",
+      "entry": "能写出有信息增量的稿子。",
+      "salary": "8–20K/月",
+      "path90": [
+        "第 1–2 周：定 3 个选题",
+        "第 3–4 周：写完 1 篇深度稿",
+        "第 5–8 周：投稿/投岗",
+        "第 9–12 周：积累采访资源"
+      ],
+      "fields": [
+        "f_publish"
+      ]
+    },
+    {
+      "id": "j18",
+      "title": "市场策划",
+      "industry": "消费 / 广告",
+      "clusters": {
+        "creating": 0.9,
+        "connecting": 0.7,
+        "executing": 0.6
+      },
+      "domains": [
+        "business",
+        "content"
+      ],
+      "a_day": "想 campaign、写方案、跟执行。",
+      "entry": "能独立写一份可落地的方案。",
+      "salary": "10–22K/月",
+      "path90": [
+        "第 1–2 周：拆 10 个 campaign",
+        "第 3–4 周：写一份完整方案",
+        "第 5–8 周：投市场岗",
+        "第 9–12 周：练提案"
+      ],
+      "fields": [
+        "f_mkt"
+      ]
+    },
+    {
+      "id": "j19",
+      "title": "社群 / 私域运营",
+      "industry": "消费 / 教育",
+      "clusters": {
+        "connecting": 1.0,
+        "executing": 0.6
+      },
+      "domains": [
+        "business",
+        "life"
+      ],
+      "a_day": "发内容、聊天、做转化。",
+      "entry": "能让人愿意留在你的群里。",
+      "salary": "8–18K/月",
+      "path90": [
+        "第 1–2 周：建一个 50 人群",
+        "第 3–4 周：做 3 次活动",
+        "第 5–8 周：看转化数据",
+        "第 9–12 周：投私域岗"
+      ],
+      "fields": [
+        "f_mkt"
+      ]
+    },
+    {
+      "id": "j20",
+      "title": "主播 / 知识博主",
+      "industry": "内容 / 电商",
+      "clusters": {
+        "connecting": 0.8,
+        "creating": 0.8,
+        "stabilizing": 0.6
+      },
+      "domains": [
+        "content",
+        "education"
+      ],
+      "a_day": "选品/备课、开播、复盘。",
+      "entry": "能对着镜头连续讲 1 小时不冷场。",
+      "salary": "不稳定，3K–10 万/月",
+      "path90": [
+        "第 1–2 周：定人设和品类",
+        "第 3–4 周：播 10 场",
+        "第 5–8 周：看停留和转化",
+        "第 9–12 周：决定加不加投流"
+      ],
+      "fields": [
+        "f_video",
+        "f_train"
+      ]
+    },
+    {
+      "id": "j21",
+      "title": "质量管理 / 测试",
+      "industry": "制造 / 软件",
+      "clusters": {
+        "stabilizing": 0.9,
+        "executing": 0.8,
+        "thinking": 0.6
+      },
+      "domains": [
+        "tech"
+      ],
+      "a_day": "写用例、跑流程、抓问题。",
+      "entry": "细致 + 能把问题说清楚。",
+      "salary": "8–18K/月",
+      "path90": [
+        "第 1–2 周：学测试流程",
+        "第 3–4 周：写一套用例",
+        "第 5–8 周：投 QA 岗",
+        "第 9–12 周：学自动化"
+      ],
+      "fields": [
+        "f_software"
+      ]
+    },
+    {
+      "id": "j22",
+      "title": "运维 / SRE",
+      "industry": "互联网 / 云",
+      "clusters": {
+        "stabilizing": 0.8,
+        "executing": 0.8,
+        "thinking": 0.7
+      },
+      "domains": [
+        "tech"
+      ],
+      "a_day": "盯监控、处理告警、写脚本。",
+      "entry": "Linux + 一门脚本语言。",
+      "salary": "12–25K/月",
+      "path90": [
+        "第 1–2 周：补 Linux 基础",
+        "第 3–4 周：搭一套监控",
+        "第 5–8 周：投运维岗",
+        "第 9–12 周：学容器"
+      ],
+      "fields": [
+        "f_it"
+      ]
+    },
+    {
+      "id": "j23",
+      "title": "产品设计 / UX",
+      "industry": "互联网 / 硬件",
+      "clusters": {
+        "creating": 0.8,
+        "thinking": 0.8,
+        "connecting": 0.6
+      },
+      "domains": [
+        "tech",
+        "art"
+      ],
+      "a_day": "画原型、做用户测试、跟研发对细节。",
+      "entry": "作品集 + 能讲清设计理由。",
+      "salary": "12–25K/月",
+      "path90": [
+        "第 1–2 周：学 Figma",
+        "第 3–4 周：重做一个 App 的 3 个页面",
+        "第 5–8 周：投设计岗",
+        "第 9–12 周：补用户测试方法"
+      ],
+      "fields": [
+        "f_productd",
+        "f_graphic"
+      ]
+    },
+    {
+      "id": "j24",
+      "title": "行政 / 综合支持",
+      "industry": "全行业",
+      "clusters": {
+        "stabilizing": 0.9,
+        "executing": 0.7,
+        "connecting": 0.6
+      },
+      "domains": [
+        "business",
+        "life"
+      ],
+      "a_day": "订会议室、报销、处理杂事。",
+      "entry": "靠谱、细致、会协调。",
+      "salary": "6–12K/月",
+      "path90": [
+        "第 1–2 周：学流程规范",
+        "第 3–4 周：接手一块事务",
+        "第 5–8 周：投行政岗",
+        "第 9–12 周：往 HR/运营转"
+      ],
+      "fields": [
+        "f_admin"
+      ]
+    },
+    {
+      "id": "e01",
+      "title": "运营助理 / 内容运营",
+      "industry": "互联网 / 消费 / 教育",
+      "clusters": {
+        "executing": 0.7,
+        "connecting": 0.6,
+        "creating": 0.5
+      },
+      "domains": [
+        "content",
+        "business"
+      ],
+      "a_day": "写文案、发笔记、回评论、做数据表，被安排什么做什么。",
+      "entry": "有 3 条自己做的内容，比学历管用。",
+      "salary": "5–9K/月",
+      "path90": [
+        "第 1–2 周：拆 10 个同类账号的选题结构",
+        "第 3–4 周：自己做 3 条内容发出去",
+        "第 5–8 周：拿着数据投实习/助理岗",
+        "第 9–12 周：复盘哪条为什么有流量"
+      ],
+      "fields": [
+        "f_mkt"
+      ]
+    },
+    {
+      "id": "e02",
+      "title": "数据分析助理",
+      "industry": "互联网 / 零售",
+      "clusters": {
+        "thinking": 0.8,
+        "executing": 0.6,
+        "stabilizing": 0.4
+      },
+      "domains": [
+        "tech",
+        "business"
+      ],
+      "a_day": "拉数、做表、给正式分析师打下手。",
+      "entry": "Excel 熟练 + 会一点 SQL 就够入门。",
+      "salary": "5–8K/月",
+      "path90": [
+        "第 1–2 周：SQL 基础 + 一个 BI 工具",
+        "第 3–4 周：做一份完整的数据分析小报告",
+        "第 5–8 周：投助理岗/实习",
+        "第 9–12 周：补业务指标（留存、转化）"
+      ],
+      "fields": [
+        "f_data"
+      ]
+    },
+    {
+      "id": "e03",
+      "title": "产品助理",
+      "industry": "互联网 / SaaS",
+      "clusters": {
+        "thinking": 0.7,
+        "connecting": 0.6,
+        "executing": 0.6
+      },
+      "domains": [
+        "tech",
+        "business"
+      ],
+      "a_day": "写需求、画原型、跟研发对进度、整理反馈。",
+      "entry": "能画出一个完整功能的原型。",
+      "salary": "6–10K/月",
+      "path90": [
+        "第 1–2 周：学 Figma 或墨刀",
+        "第 3–4 周：拆解 3 个常用 App 的功能",
+        "第 5–8 周：做一份完整原型 + PRD",
+        "第 9–12 周：投产品助理岗"
+      ],
+      "fields": [
+        "f_software"
+      ]
+    },
+    {
+      "id": "e04",
+      "title": "新媒体编辑 / 剪辑",
+      "industry": "MCN / 品牌 / 媒体",
+      "clusters": {
+        "creating": 0.8,
+        "executing": 0.6,
+        "stabilizing": 0.5
+      },
+      "domains": [
+        "content",
+        "art"
+      ],
+      "a_day": "写脚本、剪片子、配字幕、赶热点。",
+      "entry": "会剪映 + 有 3 条成片。",
+      "salary": "5–8K/月",
+      "path90": [
+        "第 1–2 周：学剪映 + 拆 20 条爆款节奏",
+        "第 3–4 周：自己做 3 条成片",
+        "第 5–8 周：投 MCN/品牌内容岗",
+        "第 9–12 周：用播放数据复盘"
+      ],
+      "fields": [
+        "f_video"
+      ]
+    },
+    {
+      "id": "e05",
+      "title": "销售 / 客户成功",
+      "industry": "SaaS / 消费 / 教育",
+      "clusters": {
+        "connecting": 0.9,
+        "executing": 0.7,
+        "stabilizing": 0.6
+      },
+      "domains": [
+        "business",
+        "society"
+      ],
+      "a_day": "打电话、拜访、跟进、被拒绝。",
+      "entry": "不怕被拒绝，能把话说清楚。",
+      "salary": "6–12K/月 + 提成",
+      "path90": [
+        "第 1–2 周：学产品知识 + 话术",
+        "第 3–4 周：跟 10 个客户聊",
+        "第 5–8 周：投销售/客户成功岗",
+        "第 9–12 周：复盘成交率"
+      ],
+      "fields": [
+        "f_biz"
+      ]
+    },
+    {
+      "id": "e06",
+      "title": "技术支持 / 实施顾问",
+      "industry": "软件 / 企业服务",
+      "clusters": {
+        "thinking": 0.7,
+        "executing": 0.7,
+        "connecting": 0.6
+      },
+      "domains": [
+        "tech",
+        "business"
+      ],
+      "a_day": "答疑、配置系统、跑客户现场、写文档。",
+      "entry": "懂一点技术 + 能跟客户说人话。",
+      "salary": "7–12K/月",
+      "path90": [
+        "第 1–2 周：学产品 + 常见问题",
+        "第 3–4 周：跟 3 次现场实施",
+        "第 5–8 周：投实施/技术支持岗",
+        "第 9–12 周：往售前或产品转"
+      ],
+      "fields": [
+        "f_it"
+      ]
+    },
+    {
+      "id": "s01",
+      "title": "独立顾问 / 行业专家",
+      "industry": "咨询 / 企业服务",
+      "clusters": {
+        "thinking": 1.0,
+        "connecting": 0.7,
+        "exploring": 0.6
+      },
+      "domains": [
+        "business",
+        "society"
+      ],
+      "a_day": "见客户、诊断问题、写方案、按项目收钱。",
+      "entry": "10 年以上行业经验 + 3 个可讲的案例。",
+      "salary": "按项目 3–10 万/单，不稳定",
+      "path90": [
+        "第 1–2 周：盘点能卖的 3 个能力",
+        "第 3–4 周：写一页服务说明（解决什么问题、多久、多少钱）",
+        "第 5–8 周：找 10 个老同事老客户聊，拿到 3 个意向",
+        "第 9–12 周：低价接 1 单，完整交付"
+      ],
+      "fields": [
+        "f_consult"
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "工作室 / 小生意创业",
+      "industry": "消费 / 内容 / 服务",
+      "clusters": {
+        "creating": 0.8,
+        "executing": 0.8,
+        "thinking": 0.7
+      },
+      "domains": [
+        "business",
+        "content"
+      ],
+      "a_day": "找客户、做交付、管现金流，什么都得干。",
+      "entry": "有一个能验证的小需求 + 6 个月生活费。",
+      "salary": "不稳定，0–10 万/月",
+      "path90": [
+        "第 1–2 周：选一个你熟悉的小需求",
+        "第 3–4 周：做出最小可卖的版本",
+        "第 5–8 周：卖给 10 个真实客户",
+        "第 9–12 周：算清楚能不能养活自己"
+      ],
+      "fields": [
+        "f_operate"
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "团队负责人 / 部门经理",
+      "industry": "全行业",
+      "clusters": {
+        "executing": 0.9,
+        "connecting": 0.8,
+        "stabilizing": 0.7
+      },
+      "domains": [
+        "business"
+      ],
+      "a_day": "开会、定目标、带人、背指标、处理人的问题。",
+      "entry": "带过 3 人以上，能对结果负责。",
+      "salary": "20–40K/月",
+      "path90": [
+        "第 1–2 周：盘点你带过的人和结果",
+        "第 3–4 周：主动接一个跨组项目",
+        "第 5–8 周：跟上级明确「什么算晋升」",
+        "第 9–12 周：补管理动作（目标/反馈/复盘）"
+      ],
+      "fields": [
+        "f_operate"
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "技术专家 / 架构师",
+      "industry": "互联网 / 软件",
+      "clusters": {
+        "thinking": 1.0,
+        "stabilizing": 0.8,
+        "exploring": 0.7
+      },
+      "domains": [
+        "tech"
+      ],
+      "a_day": "做技术决策、写核心代码、带技术方向。",
+      "entry": "有一个别人绕不开的技术专长。",
+      "salary": "25–50K/月",
+      "path90": [
+        "第 1–2 周：选一个纵深方向",
+        "第 3–4 周：写一份技术方案，能讲给别人听",
+        "第 5–8 周：在团队内主导一次技术选型",
+        "第 9–12 周：对外输出（分享/文章）建立标签"
+      ],
+      "fields": [
+        "f_software"
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "知识产品 / 企业讲师",
+      "industry": "教育 / 企业服务",
+      "clusters": {
+        "connecting": 0.8,
+        "thinking": 0.8,
+        "creating": 0.7
+      },
+      "domains": [
+        "education",
+        "business"
+      ],
+      "a_day": "备课、讲课、做课、答疑、迭代内容。",
+      "entry": "有一个能讲 2 小时、别人愿意付费的主题。",
+      "salary": "按天 3–15K，或课程分成",
+      "path90": [
+        "第 1–2 周：定一个你最懂的题目",
+        "第 3–4 周：做一版课件，先在公司内部讲",
+        "第 5–8 周：录成 3 节短课发出去",
+        "第 9–12 周：接第一个付费场"
+      ],
+      "fields": [
+        "f_train"
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "自由职业者（设计 / 开发 / 咨询）",
+      "industry": "服务",
+      "clusters": {
+        "creating": 0.8,
+        "exploring": 0.8,
+        "executing": 0.6
+      },
+      "domains": [
+        "content",
+        "tech"
+      ],
+      "a_day": "找单、报价、交付、催款、复购。",
+      "entry": "有 3 个能展示的作品 + 稳定的获客渠道。",
+      "salary": "不稳定，10–40K/月",
+      "path90": [
+        "第 1–2 周：整理 3 个作品成集",
+        "第 3–4 周：定一个报价（别按小时）",
+        "第 5–8 周：在 2 个平台持续发作品",
+        "第 9–12 周：拿到第 3 个复购客户"
+      ],
+      "fields": [
+        "f_operate"
+      ]
+    },
+    {
+      "id": "j25",
+      "title": "园艺师 / 花艺师",
+      "industry": "园艺 / 花店 / 文旅",
+      "clusters": {
+        "executing": 0.8,
+        "stabilizing": 0.7,
+        "creating": 0.6
+      },
+      "domains": [
+        "nature",
+        "art"
+      ],
+      "fields": [
+        "f_flower",
+        "f_forest"
+      ],
+      "a_day": "养护植物、做花艺作品、跟客户对方案，手上常年有土。",
+      "entry": "能独立做出 3 个作品，懂植物习性。",
+      "salary": "5–12K/月，或按项目",
+      "path90": [
+        "第 1–2 周：系统学一遍常见植物养护",
+        "第 3–4 周：做 3 个花艺/造景作品拍照",
+        "第 5–8 周：去花店/园艺公司实习或兼职",
+        "第 9–12 周：接第一个私单"
+      ]
+    },
+    {
+      "id": "j26",
+      "title": "农艺师 / 种植技术",
+      "industry": "农业 / 种植基地 / 农资",
+      "clusters": {
+        "executing": 0.9,
+        "stabilizing": 0.8,
+        "thinking": 0.6
+      },
+      "domains": [
+        "nature",
+        "science"
+      ],
+      "fields": [
+        "f_farm",
+        "f_forest"
+      ],
+      "a_day": "下地看苗情、测土配肥、记录数据、给种植户做方案。",
+      "entry": "农学/园艺相关专业，或跟过一季完整种植。",
+      "salary": "6–12K/月",
+      "path90": [
+        "第 1–2 周：学土壤、肥料、病虫害基础",
+        "第 3–4 周：跟一次完整种植周期",
+        "第 5–8 周：投农业公司/基地技术岗",
+        "第 9–12 周：整理一份种植方案作品"
+      ]
+    },
+    {
+      "id": "j27",
+      "title": "宠物医生 / 宠物美容",
+      "industry": "宠物医疗 / 宠物服务",
+      "clusters": {
+        "connecting": 0.7,
+        "executing": 0.7,
+        "thinking": 0.6
+      },
+      "domains": [
+        "nature",
+        "health"
+      ],
+      "fields": [
+        "f_pet"
+      ],
+      "a_day": "看诊、做手术、安抚主人，或洗澡剪毛一整天。",
+      "entry": "兽医相关专业（医生），或美容师培训证书。",
+      "salary": "6–15K/月",
+      "path90": [
+        "第 1–2 周：确认是走医疗还是美容",
+        "第 3–4 周：找宠物医院/店做助理",
+        "第 5–8 周：考证或跟师学习",
+        "第 9–12 周：独立接第一单"
+      ]
+    },
+    {
+      "id": "j28",
+      "title": "自然教育 / 营地运营",
+      "industry": "营地 / 研学 / 文旅",
+      "clusters": {
+        "connecting": 0.8,
+        "creating": 0.7,
+        "executing": 0.6
+      },
+      "domains": [
+        "nature",
+        "education"
+      ],
+      "fields": [
+        "f_outdoor",
+        "f_forest"
+      ],
+      "a_day": "带亲子活动、设计路线、盯安全，周末最忙。",
+      "entry": "能带 20 人活动，懂一点自然知识。",
+      "salary": "6–12K/月",
+      "path90": [
+        "第 1–2 周：跟 3 场营地活动做助教",
+        "第 3–4 周：设计一条半日活动路线",
+        "第 5–8 周：投营地/研学机构",
+        "第 9–12 周：独立带一场"
+      ]
+    },
+    {
+      "id": "j29",
+      "title": "农产品电商 / 品控",
+      "industry": "农业 / 电商 / 食品",
+      "clusters": {
+        "executing": 0.7,
+        "connecting": 0.7,
+        "creating": 0.6
+      },
+      "domains": [
+        "nature",
+        "business"
+      ],
+      "fields": [
+        "f_farm",
+        "f_food"
+      ],
+      "a_day": "选品、验货、拍图、上架、处理售后。",
+      "entry": "懂产品 + 会一点内容和数据。",
+      "salary": "6–15K/月",
+      "path90": [
+        "第 1–2 周：选 3 个单品研究产地和成本",
+        "第 3–4 周：开一个小店或帮人代运营",
+        "第 5–8 周：卖出前 50 单",
+        "第 9–12 周：算清毛利和复购"
+      ]
+    },
+    {
+      "id": "j30",
+      "title": "食品研发 / 营养",
+      "industry": "食品 / 健康",
+      "clusters": {
+        "thinking": 0.8,
+        "creating": 0.7,
+        "stabilizing": 0.6
+      },
+      "domains": [
+        "nature",
+        "health",
+        "life"
+      ],
+      "fields": [
+        "f_food"
+      ],
+      "a_day": "做配方、试吃、测数据、写工艺文件。",
+      "entry": "食品相关专业，或能独立做出一款可复制的产品。",
+      "salary": "8–18K/月",
+      "path90": [
+        "第 1–2 周：学食品工艺基础",
+        "第 3–4 周：做一款可复制的产品",
+        "第 5–8 周：投食品公司研发/品控",
+        "第 9–12 周：整理配方与工艺文档"
+      ]
+    }
+  ]
+}

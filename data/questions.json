@@ -1,0 +1,1204 @@
+{
+  "version": "v1.0",
+  "updated": "2026-10-28",
+  "counts": {
+    "total": 54,
+    "profile": 7,
+    "scored": 42,
+    "check": 3
+  },
+  "estimate_minutes": 9,
+  "clusters": {
+    "thinking": {
+      "name": "思考型",
+      "desc": "分析、抽象、洞察本质"
+    },
+    "creating": {
+      "name": "创造型",
+      "desc": "发散、审美、从 0 到 1"
+    },
+    "connecting": {
+      "name": "连接型",
+      "desc": "共情、表达、凝聚人"
+    },
+    "executing": {
+      "name": "执行型",
+      "desc": "推进、秩序、细节"
+    },
+    "exploring": {
+      "name": "探索型",
+      "desc": "学习、好奇、跨界"
+    },
+    "stabilizing": {
+      "name": "稳定型",
+      "desc": "专注、耐心、可靠"
+    }
+  },
+  "value_groups": {
+    "growth": {
+      "name": "成就成长",
+      "purpose": "让人变强"
+    },
+    "freedom": {
+      "name": "自由自主",
+      "purpose": "让人自由"
+    },
+    "relation": {
+      "name": "关系贡献",
+      "purpose": "让人被看见"
+    },
+    "security": {
+      "name": "安全稳定",
+      "purpose": "让人安心"
+    }
+  },
+  "domains": {
+    "tech": "科技与数据",
+    "business": "商业与增长",
+    "content": "内容与表达",
+    "education": "教育与成长",
+    "health": "健康与身心",
+    "art": "艺术与审美",
+    "nature": "自然与手艺",
+    "society": "社会与公益",
+    "life": "生活与关系"
+  },
+  "profile": [
+    {
+      "id": "P0",
+      "module": "profile",
+      "type": "tel",
+      "stem": "你的手机号（用于交付报告，不会外传）",
+      "required": true
+    },
+    {
+      "id": "P1",
+      "module": "profile",
+      "type": "choice",
+      "tag": "age",
+      "stem": "你今年多大？",
+      "options": [
+        {
+          "key": "A",
+          "text": "18–22 岁"
+        },
+        {
+          "key": "B",
+          "text": "23–27 岁"
+        },
+        {
+          "key": "C",
+          "text": "28–34 岁"
+        },
+        {
+          "key": "D",
+          "text": "35–44 岁"
+        },
+        {
+          "key": "E",
+          "text": "45 岁以上"
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "module": "profile",
+      "type": "choice",
+      "tag": "stage",
+      "stem": "你现在的状态是：",
+      "options": [
+        {
+          "key": "A",
+          "text": "在校 / 刚毕业，在找工作"
+        },
+        {
+          "key": "B",
+          "text": "工作 1–3 年"
+        },
+        {
+          "key": "C",
+          "text": "工作 3–8 年"
+        },
+        {
+          "key": "D",
+          "text": "工作 8 年以上"
+        },
+        {
+          "key": "E",
+          "text": "自由职业 / 自己做事"
+        },
+        {
+          "key": "F",
+          "text": "全职照顾家庭 / 待业中"
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "module": "profile",
+      "type": "choice",
+      "tag": "goal",
+      "stem": "你现在最想解决的是：",
+      "options": [
+        {
+          "key": "A",
+          "text": "不知道能做什么"
+        },
+        {
+          "key": "B",
+          "text": "想转行，但不敢动"
+        },
+        {
+          "key": "C",
+          "text": "想涨薪 / 升职"
+        },
+        {
+          "key": "D",
+          "text": "想搞副业 / 第二曲线"
+        },
+        {
+          "key": "E",
+          "text": "想创业，做自己的事"
+        }
+      ]
+    },
+    {
+      "id": "P6",
+      "module": "profile",
+      "type": "choice",
+      "stem": "你填的生日是阳历还是阴历？（不知道就选阳历）",
+      "options": [
+        {
+          "key": "A",
+          "text": "阳历（公历）—— 身份证上那个，如 1984-11-16"
+        },
+        {
+          "key": "B",
+          "text": "阴历（农历）—— 老家过生日那个，如 1984-10-24"
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "module": "profile",
+      "type": "date",
+      "stem": "你的出生年月日？（按上一题选的历法填）"
+    },
+    {
+      "id": "P5",
+      "module": "profile",
+      "type": "choice",
+      "stem": "你出生在哪个时辰？（不知道就选最接近的）",
+      "options": [
+        {
+          "key": "A",
+          "text": "子时（23–1 点）"
+        },
+        {
+          "key": "B",
+          "text": "丑时（1–3 点）"
+        },
+        {
+          "key": "C",
+          "text": "寅时（3–5 点）"
+        },
+        {
+          "key": "D",
+          "text": "卯时（5–7 点）"
+        },
+        {
+          "key": "E",
+          "text": "辰时（7–9 点）"
+        },
+        {
+          "key": "F",
+          "text": "巳时（9–11 点）"
+        },
+        {
+          "key": "G",
+          "text": "午时（11–13 点）"
+        },
+        {
+          "key": "H",
+          "text": "未时（13–15 点）"
+        },
+        {
+          "key": "I",
+          "text": "申时（15–17 点）"
+        },
+        {
+          "key": "J",
+          "text": "酉时（17–19 点）"
+        },
+        {
+          "key": "K",
+          "text": "戌时（19–21 点）"
+        },
+        {
+          "key": "L",
+          "text": "亥时（21–23 点）"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "module": "talent",
+      "type": "choice",
+      "stem": "周五下午，老板丢来一个没头没尾的需求，说下周一要。你的第一反应是：",
+      "options": [
+        {
+          "key": "A",
+          "text": "先问清楚：到底要解决什么问题、谁在用",
+          "scores": {
+            "thinking": 2
+          }
+        },
+        {
+          "key": "B",
+          "text": "先拆开：哪些能先做、哪些要等",
+          "scores": {
+            "executing": 2
+          }
+        },
+        {
+          "key": "C",
+          "text": "先想：有没有更聪明的做法",
+          "scores": {
+            "creating": 2
+          }
+        },
+        {
+          "key": "D",
+          "text": "先找人：看看别人有没有现成的",
+          "scores": {
+            "connecting": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q2",
+      "module": "talent",
+      "type": "choice",
+      "stem": "项目复盘会上，大家各说各的。你通常会：",
+      "options": [
+        {
+          "key": "A",
+          "text": "把大家的发言整理成几条主线",
+          "scores": {
+            "thinking": 2
+          }
+        },
+        {
+          "key": "B",
+          "text": "直接说：下次就改这三件事",
+          "scores": {
+            "executing": 2
+          }
+        },
+        {
+          "key": "C",
+          "text": "提一个大家没想到的角度",
+          "scores": {
+            "creating": 2
+          }
+        },
+        {
+          "key": "D",
+          "text": "先肯定每个人的贡献",
+          "scores": {
+            "connecting": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q3",
+      "module": "talent",
+      "type": "choice",
+      "stem": "要学一个完全陌生的东西，你会：",
+      "options": [
+        {
+          "key": "A",
+          "text": "找一门课，从第一章系统学起",
+          "scores": {
+            "stabilizing": 2
+          }
+        },
+        {
+          "key": "B",
+          "text": "先动手做个小 demo，边做边查",
+          "scores": {
+            "exploring": 2
+          }
+        },
+        {
+          "key": "C",
+          "text": "找行业里的人聊，问他们怎么理解",
+          "scores": {
+            "connecting": 2
+          }
+        },
+        {
+          "key": "D",
+          "text": "先把概念和框架画出来",
+          "scores": {
+            "thinking": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q4",
+      "module": "talent",
+      "type": "choice",
+      "stem": "一群人要在七天里搞定一件从没做过的事，你最可能：",
+      "options": [
+        {
+          "key": "A",
+          "text": "站出来分工、定节点",
+          "scores": {
+            "executing": 2
+          }
+        },
+        {
+          "key": "B",
+          "text": "提出一个完全不同的方案",
+          "scores": {
+            "creating": 2
+          }
+        },
+        {
+          "key": "C",
+          "text": "先去试做最小的一块",
+          "scores": {
+            "exploring": 2
+          }
+        },
+        {
+          "key": "D",
+          "text": "把风险列清楚，先定底线",
+          "scores": {
+            "stabilizing": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q5",
+      "module": "talent",
+      "type": "choice",
+      "stem": "一件做了很久的事，突然看不到进展。你会：",
+      "options": [
+        {
+          "key": "A",
+          "text": "换个方法再试",
+          "scores": {
+            "creating": 2
+          }
+        },
+        {
+          "key": "B",
+          "text": "拆成更小的步骤，每天推一点",
+          "scores": {
+            "executing": 2
+          }
+        },
+        {
+          "key": "C",
+          "text": "接受它需要时间，继续熬",
+          "scores": {
+            "stabilizing": 2
+          }
+        },
+        {
+          "key": "D",
+          "text": "先去试试别的方向",
+          "scores": {
+            "exploring": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q6",
+      "module": "talent",
+      "type": "choice",
+      "stem": "别人形容你，最常说的一句是：",
+      "options": [
+        {
+          "key": "A",
+          "text": "交给你我放心",
+          "scores": {
+            "stabilizing": 2
+          }
+        },
+        {
+          "key": "B",
+          "text": "你好奇心真强",
+          "scores": {
+            "exploring": 2
+          }
+        },
+        {
+          "key": "C",
+          "text": "跟你聊天很舒服",
+          "scores": {
+            "connecting": 2
+          }
+        },
+        {
+          "key": "D",
+          "text": "你想得真细",
+          "scores": {
+            "thinking": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q7",
+      "module": "talent",
+      "type": "likert",
+      "target": "thinking",
+      "stem": "遇到复杂问题，你会先把它的结构拆出来再动手"
+    },
+    {
+      "id": "Q8",
+      "module": "talent",
+      "type": "likert",
+      "target": "thinking",
+      "stem": "别人说完一段话，你能听出他没说出口的那层意思"
+    },
+    {
+      "id": "Q9",
+      "module": "talent",
+      "type": "likert",
+      "target": "creating",
+      "stem": "你经常想到别人没想到的做法"
+    },
+    {
+      "id": "Q10",
+      "module": "talent",
+      "type": "likert",
+      "target": "creating",
+      "stem": "你对“好不好看、顺不顺”很敏感，会忍不住去调"
+    },
+    {
+      "id": "Q11",
+      "module": "talent",
+      "type": "likert",
+      "target": "connecting",
+      "stem": "别人情绪不对，你很快能察觉"
+    },
+    {
+      "id": "Q12",
+      "module": "talent",
+      "type": "likert",
+      "target": "connecting",
+      "stem": "你能让原本不同意的人，愿意再听你说一次"
+    },
+    {
+      "id": "Q13",
+      "module": "talent",
+      "type": "likert",
+      "target": "executing",
+      "stem": "一件事交到你手上，你会盯到它真正结束"
+    },
+    {
+      "id": "Q14",
+      "module": "talent",
+      "type": "likert",
+      "target": "executing",
+      "stem": "你会主动把混乱的流程整理成清单或模板"
+    },
+    {
+      "id": "Q15",
+      "module": "talent",
+      "type": "likert",
+      "target": "exploring",
+      "stem": "看到新工具、新领域，你会忍不住上手试"
+    },
+    {
+      "id": "Q16",
+      "module": "talent",
+      "type": "likert",
+      "target": "exploring",
+      "stem": "你能把 A 领域学到的东西用到 B 领域"
+    },
+    {
+      "id": "Q17",
+      "module": "talent",
+      "type": "likert",
+      "target": "stabilizing",
+      "stem": "你能长时间做同一件重复的事而不烦躁"
+    },
+    {
+      "id": "Q18",
+      "module": "talent",
+      "type": "likert",
+      "target": "stabilizing",
+      "stem": "你说要做的事，基本都会做到"
+    },
+    {
+      "id": "Q19",
+      "module": "value",
+      "type": "choice",
+      "stem": "两份 offer 薪资一样，你会选：",
+      "options": [
+        {
+          "key": "A",
+          "text": "成长快，但会很累",
+          "scores": {
+            "growth": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "时间自由，自己安排",
+          "scores": {
+            "freedom": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "团队氛围好，能帮到人",
+          "scores": {
+            "relation": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "稳定，不会突然裁员",
+          "scores": {
+            "security": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q20",
+      "module": "value",
+      "type": "choice",
+      "stem": "如果只能保住一样，你保：",
+      "options": [
+        {
+          "key": "A",
+          "text": "持续变强的能力",
+          "scores": {
+            "growth": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "自己说了算的空间",
+          "scores": {
+            "freedom": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "身边这群人",
+          "scores": {
+            "relation": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "一份确定的收入",
+          "scores": {
+            "security": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q21",
+      "module": "value",
+      "type": "choice",
+      "stem": "你最不能忍的工作是：",
+      "options": [
+        {
+          "key": "A",
+          "text": "学不到东西",
+          "scores": {
+            "growth": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "事事被管",
+          "scores": {
+            "freedom": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "勾心斗角，没人情味",
+          "scores": {
+            "relation": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "随时可能没饭吃",
+          "scores": {
+            "security": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q22",
+      "module": "value",
+      "type": "choice",
+      "stem": "十年后，你希望别人怎么评价你：",
+      "options": [
+        {
+          "key": "A",
+          "text": "他一直在变强",
+          "scores": {
+            "growth": 1
+          }
+        },
+        {
+          "key": "B",
+          "text": "他活得很自由",
+          "scores": {
+            "freedom": 1
+          }
+        },
+        {
+          "key": "C",
+          "text": "他帮过很多人",
+          "scores": {
+            "relation": 1
+          }
+        },
+        {
+          "key": "D",
+          "text": "他把日子过得稳稳的",
+          "scores": {
+            "security": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q23",
+      "module": "value",
+      "type": "ranking",
+      "stem": "把下面四样排序，第一是你最看重的：",
+      "items": [
+        {
+          "key": "1",
+          "text": "成长",
+          "group": "growth"
+        },
+        {
+          "key": "2",
+          "text": "自由",
+          "group": "freedom"
+        },
+        {
+          "key": "3",
+          "text": "关系",
+          "group": "relation"
+        },
+        {
+          "key": "4",
+          "text": "稳定",
+          "group": "security"
+        }
+      ]
+    },
+    {
+      "id": "Q24",
+      "module": "value",
+      "type": "ranking",
+      "stem": "四种成就感，排序：",
+      "items": [
+        {
+          "key": "1",
+          "text": "做成一件很难的事",
+          "group": "growth"
+        },
+        {
+          "key": "2",
+          "text": "自己掌控节奏",
+          "group": "freedom"
+        },
+        {
+          "key": "3",
+          "text": "被人需要",
+          "group": "relation"
+        },
+        {
+          "key": "4",
+          "text": "一直不出错",
+          "group": "security"
+        }
+      ]
+    },
+    {
+      "id": "Q25",
+      "module": "value",
+      "type": "ranking",
+      "stem": "四种代价，你最不愿付的是，排序：",
+      "items": [
+        {
+          "key": "1",
+          "text": "学不到东西",
+          "group": "growth"
+        },
+        {
+          "key": "2",
+          "text": "被人管死",
+          "group": "freedom"
+        },
+        {
+          "key": "3",
+          "text": "孤军奋战",
+          "group": "relation"
+        },
+        {
+          "key": "4",
+          "text": "收入不稳定",
+          "group": "security"
+        }
+      ]
+    },
+    {
+      "id": "Q26",
+      "module": "value",
+      "type": "ranking",
+      "stem": "四种理想状态，排序：",
+      "items": [
+        {
+          "key": "1",
+          "text": "一直在进步",
+          "group": "growth"
+        },
+        {
+          "key": "2",
+          "text": "想干就干",
+          "group": "freedom"
+        },
+        {
+          "key": "3",
+          "text": "身边有人",
+          "group": "relation"
+        },
+        {
+          "key": "4",
+          "text": "心里有底",
+          "group": "security"
+        }
+      ]
+    },
+    {
+      "id": "Q27",
+      "module": "value",
+      "type": "multi",
+      "max_pick": 3,
+      "stem": "选出最像你的三个：",
+      "options": [
+        {
+          "key": "1",
+          "text": "成长",
+          "group": "growth"
+        },
+        {
+          "key": "2",
+          "text": "成就",
+          "group": "growth"
+        },
+        {
+          "key": "3",
+          "text": "挑战",
+          "group": "growth"
+        },
+        {
+          "key": "4",
+          "text": "创造",
+          "group": "growth"
+        },
+        {
+          "key": "5",
+          "text": "学习",
+          "group": "growth"
+        },
+        {
+          "key": "6",
+          "text": "突破",
+          "group": "growth"
+        },
+        {
+          "key": "7",
+          "text": "卓越",
+          "group": "growth"
+        },
+        {
+          "key": "8",
+          "text": "探索",
+          "group": "growth"
+        },
+        {
+          "key": "9",
+          "text": "进步",
+          "group": "growth"
+        },
+        {
+          "key": "10",
+          "text": "改变",
+          "group": "growth"
+        }
+      ]
+    },
+    {
+      "id": "Q28",
+      "module": "value",
+      "type": "multi",
+      "max_pick": 3,
+      "stem": "选出最像你的三个：",
+      "options": [
+        {
+          "key": "1",
+          "text": "自由",
+          "group": "freedom"
+        },
+        {
+          "key": "2",
+          "text": "自主",
+          "group": "freedom"
+        },
+        {
+          "key": "3",
+          "text": "掌控",
+          "group": "freedom"
+        },
+        {
+          "key": "4",
+          "text": "独立",
+          "group": "freedom"
+        },
+        {
+          "key": "5",
+          "text": "灵活",
+          "group": "freedom"
+        },
+        {
+          "key": "6",
+          "text": "从容",
+          "group": "freedom"
+        },
+        {
+          "key": "7",
+          "text": "真实",
+          "group": "freedom"
+        },
+        {
+          "key": "8",
+          "text": "边界",
+          "group": "freedom"
+        },
+        {
+          "key": "9",
+          "text": "选择权",
+          "group": "freedom"
+        },
+        {
+          "key": "10",
+          "text": "松弛",
+          "group": "freedom"
+        }
+      ]
+    },
+    {
+      "id": "Q29",
+      "module": "value",
+      "type": "multi",
+      "max_pick": 3,
+      "stem": "选出最像你的三个：",
+      "options": [
+        {
+          "key": "1",
+          "text": "贡献",
+          "group": "relation"
+        },
+        {
+          "key": "2",
+          "text": "助人",
+          "group": "relation"
+        },
+        {
+          "key": "3",
+          "text": "连接",
+          "group": "relation"
+        },
+        {
+          "key": "4",
+          "text": "影响",
+          "group": "relation"
+        },
+        {
+          "key": "5",
+          "text": "被需要",
+          "group": "relation"
+        },
+        {
+          "key": "6",
+          "text": "共情",
+          "group": "relation"
+        },
+        {
+          "key": "7",
+          "text": "团队",
+          "group": "relation"
+        },
+        {
+          "key": "8",
+          "text": "信任",
+          "group": "relation"
+        },
+        {
+          "key": "9",
+          "text": "传承",
+          "group": "relation"
+        },
+        {
+          "key": "10",
+          "text": "温暖",
+          "group": "relation"
+        }
+      ]
+    },
+    {
+      "id": "Q30",
+      "module": "value",
+      "type": "multi",
+      "max_pick": 3,
+      "stem": "选出最像你的三个：",
+      "options": [
+        {
+          "key": "1",
+          "text": "稳定",
+          "group": "security"
+        },
+        {
+          "key": "2",
+          "text": "安全",
+          "group": "security"
+        },
+        {
+          "key": "3",
+          "text": "秩序",
+          "group": "security"
+        },
+        {
+          "key": "4",
+          "text": "可靠",
+          "group": "security"
+        },
+        {
+          "key": "5",
+          "text": "长期",
+          "group": "security"
+        },
+        {
+          "key": "6",
+          "text": "确定",
+          "group": "security"
+        },
+        {
+          "key": "7",
+          "text": "健康",
+          "group": "security"
+        },
+        {
+          "key": "8",
+          "text": "平衡",
+          "group": "security"
+        },
+        {
+          "key": "9",
+          "text": "积累",
+          "group": "security"
+        },
+        {
+          "key": "10",
+          "text": "守约",
+          "group": "security"
+        }
+      ]
+    },
+    {
+      "id": "Q31",
+      "module": "passion",
+      "type": "multi",
+      "max_pick": 20,
+      "dynamic": "all_fields",
+      "grouped": true,
+      "stem": "从 100 个行业里，先随便圈出你「有点兴趣」的（最多 20 个，不用想太多）",
+      "options": []
+    },
+    {
+      "id": "Q32",
+      "module": "passion",
+      "type": "multi",
+      "max_pick": 10,
+      "dynamic": "picked20",
+      "stem": "现在收一收：这 20 个里，真正愿意花时间去了解的，留下 10 个",
+      "options": []
+    },
+    {
+      "id": "Q33",
+      "module": "passion",
+      "type": "multi",
+      "max_pick": 5,
+      "dynamic": "picked10",
+      "stem": "再收一次：这 10 个里，你最喜欢的是哪 5 个？",
+      "options": []
+    },
+    {
+      "id": "Q34",
+      "module": "passion",
+      "type": "multi",
+      "dynamic": "picked5",
+      "stem": "如果只能选两个，深耕五年，你会选哪两个？",
+      "options": [],
+      "max_pick": 2
+    },
+    {
+      "id": "Q35",
+      "module": "passion",
+      "type": "multi",
+      "max_pick": 3,
+      "dynamic": "subs",
+      "stem": "第一个行业里面，你最想碰哪几块？（最多 3 个）",
+      "options": []
+    },
+    {
+      "id": "Q36",
+      "module": "passion",
+      "type": "choice",
+      "stem": "你对这个行业了解到什么程度？",
+      "options": [
+        {
+          "key": "A",
+          "text": "只是觉得有意思，没深入了解"
+        },
+        {
+          "key": "B",
+          "text": "看过一些内容，知道大概"
+        },
+        {
+          "key": "C",
+          "text": "动手做过一些，有点经验"
+        },
+        {
+          "key": "D",
+          "text": "已经很熟，甚至靠它赚过钱"
+        }
+      ]
+    },
+    {
+      "id": "Q37",
+      "module": "passion",
+      "type": "likert",
+      "target": "intensity",
+      "stem": "你愿意为这个行业花钱（买书、买课、买设备、去现场）"
+    },
+    {
+      "id": "Q38",
+      "module": "passion",
+      "type": "likert",
+      "target": "intensity",
+      "stem": "做这件事的时候，你会忘记时间"
+    },
+    {
+      "id": "Q39",
+      "module": "passion",
+      "type": "multi",
+      "max_pick": 3,
+      "dynamic": "subs2",
+      "options": [],
+      "stem": "第二个行业里面，你最想碰哪几块？（最多 3 个）"
+    },
+    {
+      "id": "Q40",
+      "module": "open",
+      "type": "open",
+      "max_chars": 200,
+      "stem": "最近一次“做完不累、反而更有电”的事是什么？具体说说，越具体越好。"
+    },
+    {
+      "id": "Q41",
+      "module": "open",
+      "type": "open",
+      "max_chars": 200,
+      "stem": "别人最常找你帮什么忙？要具体的，不要写“什么都找我”。"
+    },
+    {
+      "id": "Q42",
+      "module": "open",
+      "type": "open",
+      "max_chars": 200,
+      "stem": "如果完全不用考虑钱，你想做什么？"
+    },
+    {
+      "id": "C1",
+      "module": "check",
+      "type": "choice",
+      "stem": "这道题请选择第二个选项（用于检查是否认真作答）。",
+      "options": [
+        {
+          "key": "A",
+          "text": "选项一"
+        },
+        {
+          "key": "B",
+          "text": "选项二"
+        },
+        {
+          "key": "C",
+          "text": "选项三"
+        },
+        {
+          "key": "D",
+          "text": "选项四"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "module": "check",
+      "type": "check_likert",
+      "expect": 2,
+      "stem": "我很少在做事之前先想清楚。"
+    },
+    {
+      "id": "C3",
+      "module": "check",
+      "type": "check_likert",
+      "expect": 4,
+      "stem": "一件事没真正结束，你放不下。"
+    },
+    {
+      "id": "Q43",
+      "module": "open",
+      "type": "open",
+      "max_chars": 500,
+      "stem": "最后，还有什么想告诉我的？喜欢的事、最近的难处、特别想做的事，随便写。"
+    },
+    {
+      "id": "P7",
+      "module": "open",
+      "type": "email",
+      "stem": "留个邮箱，报告生成后直接发给你（可以跳过）",
+      "required": false
+    }
+  ]
+}
